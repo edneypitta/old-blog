@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Edney Pitta</title>
+	<atom:link href="http://edneypitta.com/feed/" rel="self" type="application/rss+xml" />
+	<link>http://edneypitta.com</link>
+	<description>Descomplicando a Carreira de Programador</description>
+	<lastBuildDate>Sat, 04 Jun 2016 21:10:41 +0000</lastBuildDate>
+	<language>pt-BR</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.2</generator>
+
+<image>
+	<url>http://edneypitta.com/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png</url>
+	<title>Edney Pitta</title>
+	<link>http://edneypitta.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Migrando um projeto ASP.NET Core RC 1 para RC 2</title>
+		<link>http://edneypitta.com/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/</link>
+		<comments>http://edneypitta.com/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/#comments</comments>
+		<pubDate>Sat, 04 Jun 2016 19:57:24 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[ASP.NET Core]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=652</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core. Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?</p>
+<p>Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core.<br />
+Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar algumas experiências dessa transição.<span id="more-652"></span></p>
+<h2>.NET CLI</h2>
+<p>A principal alteração foi a introdução do .NET CLI, como dito pelo Giovanni Bassi <a href="http://blog.lambda3.com.br/2016/02/adeus-dnx-bem-vindo-net-cli/" target="_blank">aqui</a>. Basicamente, ele substitui as três ferramentas que usávamos para buildar e executar nossa aplicação (DNX, DNVM e DNU).</p>
+<p>O primeiro passo para a migração é instalar o .NET CLI usando o .NET SDK, disponível <a href="https://www.microsoft.com/net/core#windows" target="_blank">aqui</a>. Instale também a última versão do NuGet Manager para o Visual Studio. Rode o comando <code>dotnet</code> na linha de comando para identificar se o .NET CLI foi instalado corretamente.</p>
+<p>Feito isso, partimos para as mudanças no projeto.</p>
+<h2>global.json</h2>
+<p>Troque a versão do SDK de <code>1.0.0-rc1-update1</code> para <code>1.0.0-preview1-002702</code>. É por esse arquivo que o Visual Studio determina qual ferramental será utilizado para restaurar pacotes, buildar, etc.</p>
+<p><script src="https://gist.github.com/edneypitta/5e12cee0a7482eaa30e06608462f6f34.js"></script></p>
+<h2>project.json</h2>
+<p>Esse arquivo foi o que sofreu mais alterações (<a href="https://blogs.msdn.microsoft.com/dotnet/2016/05/23/changes-to-project-json/" target="_blank">e vai morrer em breve</a>).</p>
+<p>Primeiro, troque os nomes dos <code>frameworks</code> para o novo estilo. No meu caso, a mudança foi de <code>dnx451</code> para <code>net452</code>. A lista completa dos frameworks disponíveis está <a href="http://docs.nuget.org/create/targetframeworks" target="_blank">aqui</a> (ignore os que começam com <code>dnx</code>).</p>
+<p><script src="https://gist.github.com/edneypitta/8cf6411090a6344f8da33a2454f256fe.js"></script></p>
+<p>O elemento <code>compilationOptions</code> agora se chama <code>buildOptions</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/e258dda8eed6449e5ab436e671ddf663.js"></script></p>
+<p>Troque o nome de todas as dependências que tenham <code>Microsoft.AspNet.*</code> para <code>Microsoft.AspNetCore.*</code>, assim como suas versões de <code>rc1</code> para <code>rc2</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/6c5c145b3e0fe9fafa5003bddd8ac6e4.js"></script></p>
+<p>Os elementos <code>exclude</code> e <code>publishExclude</code> foram substituídos pelo elemento <code>publishOptions</code>, onde você define os arquivos a serem incluídos na publicação ao invés do excluídos.</p>
+<p><script src="https://gist.github.com/edneypitta/7a4dfee84d8902a78c6c00ef7b4e4eb8.js"></script></p>
+<p>O elemento <code>runtimeOptions</code> foi criado para configuração do garbage collector.</p>
+<p><script src="https://gist.github.com/edneypitta/623360dbb940ea149a708499f626783c.js"></script></p>
+<p>Nos projetos de teste, caso seu framework for o xUnit, a dependência deve ser trocada de <code>xunit.runner.dnx</code> para <code>dotnet-test-xunit</code>. Também deve ser adicionado o elemento <code>"testRunner"</code> para indicar qual runner será usado para rodar os testes do projeto.</p>
+<p><script src="https://gist.github.com/edneypitta/46f1e63e610eb0f625daa7482ada78ac.js"></script></p>
+<p>Por último, a principal mudança: o elemento <code>commands</code> não existe mais. No .NET CLI, ele foi substituído pelo elemento <code>tools</code>, que funciona de forma diferente. </p>
+<p>Antes tínhamos dentro de <code>commands</code> vários &#8220;atalhos&#8221; para executar algumas dependências, como o servidor Kestrel, o Entity Framework, etc.</p>
+<p><script src="https://gist.github.com/edneypitta/94e881c29dad11c8ef60d9984c108f00.js"></script></p>
+<p>Agora, como tudo é simplesmente uma Console Application (até projetos web ASP.NET Core), você somente chama diretamente a sua aplicação ou alguma dependência que estiver em <code>tools</code>. Para subir sua aplicação ASP.NET Core, basta chamar <code>dotnet run</code>. Para rodar os testes, onde tínhamos um comando <code>"test": "xunit.runner.dnx"</code>, agora basta chamar <code>dotnet test</code>. </p>
+<p><script src="https://gist.github.com/edneypitta/bcd44d2c7ce2df92bec4cb247d1f9f91.js"></script></p>
+<p>Se você quiser desenvolver uma aplicação que seja invocável via <code>tools</code>, o executável precisa ter o nome no padrão <code>dotnet-{nome}</code>. Por exemplo, o nome do executável do DotNet Watcher é <code>dotnet-watch.exe</code> e você pode chamá-lo com o comando <code>dotnet watch</code>.</p>
+<p>Mais detalhes sobre as atualizações no <code>project.json</code> podem ser vistas <a href="https://github.com/aspnet/Announcements/issues/175" target="_blank">aqui</a>. Coloquei <a href="https://gist.github.com/edneypitta/b7155a04f3d9d9c4901c3d45a716e721" target="_blank">nesse gist</a> o <code>project.json</code> completo para referência.</p>
+<h2>launchSettings.json</h2>
+<p>Esse arquivo tem as configurações para o launch da sua aplicação. Normalmente, ele deveria ter um elemento <code>web</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/87540f710ea85284eb2c862f1c20622d.js"></script></p>
+<p>Troque todo esse elemento por esse:</p>
+<p><script src="https://gist.github.com/edneypitta/386490bf8a8d220099e16c6069d9e1ad.js"></script></p>
+<p><code>WebApplication1</code> é o nome do seu projeto, o <code>commandName</code> com o valor <code>Project</code> indica que essa configuração será usada no <code>dotnet run</code> e a variável de ambiente <code>Hosting:Environment</code> foi trocada para <code>ASPNETCORE_ENVIRONMENT</code>.</p>
+<h2>appsettings.json</h2>
+<p>Nesse arquivo, apenas uma modificação: troque a configuração <code>Logging:LogLevel:Default</code> de <code>Verbose</code> por <code>Debug</code>:</p>
+<p><script src="https://gist.github.com/edneypitta/2f43f2aa457224770bf268a8661f66cd.js"></script></p>
+<h2>xproj</h2>
+<p>O arquivo <code>.xproj</code> tem algumas referências ao DNX que você precisa alterar manualmente. Dê unload no seu projeto e faça as seguintes alterações no arquivo <code>.xproj</code>:</p>
+<ul>
+<li>Substitua <code>\DNX\Microsoft.DNX.Props</code> por <code>\DotNet\Microsoft.DotNet.Props</code></li>
+<li>Em <code>\DNX\Microsoft.DNX.targets</code>, substitua <code>DNX</code> por <code>DotNet.Web</code> em projetos web ou por <code>DotNet</code> em projetos Class Library/Console Application</li>
+<li>Substitua todo o elemento <code>BaseIntermediateOutputPath</code> por <code>&lt;BaseIntermediateOutputPath Condition=&quot;&#39;$(BaseIntermediateOutputPath)&#39;==&#39;&#39; &quot;&gt;.\obj&lt;/BaseIntermediateOutputPath&gt;</code></li>
+<li>Substitua todo o elemento <code>OutputPath</code> por <code>&lt;OutputPath Condition=&quot;&#39;$(OutputPath)&#39;==&#39;&#39; &quot;&gt;.\bin\&lt;/OutputPath&gt;</code></li>
+<li>Adicione o seguinte elemento depois de <code>OutputPath</code>: <code>&lt;TargetFrameworkVersion&gt;v4.5.2&lt;/TargetFrameworkVersion&gt;</code></li>
+</ul>
+<p>Coloquei <a href="https://gist.github.com/edneypitta/79eff25475778edf38c848be4eb25b93" target="_blank">nesse gist</a> o <code>.xproj</code> completo de um projeto web para referência.</p>
+<h2>Método Main de projetos web</h2>
+<p>Antes, o entry point do nosso projeto web era algo parecido com isso na classe <code>Startup</code>:</p>
+<p><script src="https://gist.github.com/edneypitta/e0150be7a06e03ec9e55127abb225a3b.js"></script></p>
+<p>Agora temos um pouco mais de poder nesse momento. Troque todo o método <code>Main</code> pelo abaixo:</p>
+<p><script src="https://gist.github.com/edneypitta/1352a49518a102eb4c752a6a32b91626.js"></script></p>
+<p>O template do Visual Studio cria esse método numa classe separada chamada <code>Program</code>, mas isso não é necessário.</p>
+<h2>Startup.cs</h2>
+<p>Ao construir as configurações do seu projeto usando a classe <code>ConfigurationBuilder</code>, agora é necessário setar o <code>BasePath</code> para o runtime encontrar suas configurações:</p>
+<p><script src="https://gist.github.com/edneypitta/de1771f9482d56fb62395979883d8186.js"></script></p>
+<p>Se você usava o middleware <code>app.UseIISPlatformHandler()</code>, pode removê-lo. Agora ele está configurado no método <code>Main</code>.</p>
+<h2>web.config</h2>
+<p>O arquivo <code>web.config</code> deve ser criado para a configuração do handler <code>AspNetCoreModule</code>, um novo módulo do IIS para redirecionar os requests para o Kestrel:</p>
+<p><script src="https://gist.github.com/edneypitta/359cf4b3c875e076398b2d4c8e9172d0.js"></script></p>
+<h2>Trocas de namespaces</h2>
+<p>Basicamente, todos os namespaces que começavam com <code>Microsoft.AspNet.*</code> foram renomeados para <code>Microsoft.AspNetCore.*</code>. As principais trocas são:</p>
+<ul>
+<li><code>Microsoft.AspNet.Authorization</code> > <code>Microsoft.AspNetCore.Authorization</code></li>
+<li><code>Microsoft.AspNet.Mvc</code> > <code>Microsoft.AspNetCore.Mvc</code></li>
+<li><code>Microsoft.AspNet.Hosting</code> > <code>Microsoft.AspNetCore.Hosting</code></li>
+<li><code>Microsoft.AspNet.Http</code> > <code>Microsoft.AspNetCore.Http</code></li>
+<li><code>Microsoft.Extensions.OptionsModel</code> > <code>Microsoft.Extensions.Options</code></li>
+</ul>
+<h2>MVC</h2>
+<p>Os seguintes métodos da classe <code>Controller</code> foram renomeados:</p>
+<ul>
+<li><code>HttpUnauthorized</code> > <code>Unauthorized</code></li>
+<li><code>HttpNotFound</code> > <code>NotFound</code></li>
+<li><code>HttpBadRequest</code> > <code>BadRequest</code></li>
+</ul>
+<h2>Experiências</h2>
+<p>Realizar a conversão deve ser algo simples para a maioria dos projetos. Algumas APIs que não estão listadas acima foram modificadas, mas nada muito relevante.</p>
+<p>Não deixe de olhar o <a href="https://docs.asp.net/en/latest/migration/rc1-to-rc2.html" target="_blank">guia oficial de migração</a>. Veja também <a href="https://wildermuth.com/2016/05/17/Converting-an-ASP-NET-Core-RC1-Project-to-RC2" target="_blank">esse post</a> do Shawn Wildermuth, principalmente se você também precisa migrar o Entity Framework Core e o Identity.</p>
+<p>A unificação dos comandos <code>dnx</code>, <code>dnvm</code> e <code>dnu</code> em <code>dotnet</code> facilitou um pouco o dia-a-dia. Porém, algumas coisas mudaram para pior.</p>
+<p>O <code>dotnet watch</code> está praticamente inutilizável. Enquanto o DNX usava o Roslyn para fazer a compilação (gerando assemblies <em>in-memory</em>), o DotNet Watcher recompila os assemblies fisicamente, o que aumentou drasticamente o tempo de reload da aplicação.</p>
+<p>A substituição de <code>commands</code> por <code>tools</code> no <code>project.json</code> também mudou bastante a forma como trabalhamos com algumas dependências. No meu caso, por exemplo, tive bastante dificuldade para conseguir chamar o Fluent Migrator pois ele não tem ainda suporte ao .NET CLI (<a href="https://github.com/schambers/fluentmigrator/issues/712" target="_blank">estão trabalhando nisso, na verdade</a>).</p>
+<p>Por fim, caso tenha alguma dúvida, você pode tirá-la no <a href="https://aspnetcoreslack.herokuapp.com/" target="_blank">Slack do ASP.NET Core</a>. Tem bastante gente fazendo a migração e você pode acompanhar as novidades praticamente em tempo real, já que vários desenvolvedores do time do .NET Core estão lá.</p>
+<hr />
+<p>É isso pessoal. Obrigado pela leitura e vamos esperar pelo RTM, que deve sair <a href="https://github.com/aspnet/Home/wiki/Roadmap" target="_blank">no fim desse mês</a>.</p>
+<p>Até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/#respond</comments>
+		<pubDate>Thu, 12 May 2016 14:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-486]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=641</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? O último passo para conquistar meu objetivo de me tornar MCSD em Web Applications era a certificação 70-486: Developing ASP.NET MVC Web Applications. Fui aprovado com 768 pontos e consegui minha certificação! Nesse post, assim como nas provas 70-487 e 70-480, vou contar algumas dicas e impressões do exame. Sobre a [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?</p>
+<p>O último passo para conquistar meu objetivo de me tornar MCSD em Web Applications era a certificação 70-486: Developing ASP.NET MVC Web Applications. Fui aprovado com 768 pontos e consegui minha certificação!</p>
+<p>Nesse post, assim como nas provas <a href="http://edneypitta.com/certificacao-microsoft-70-487-resultado/">70-487</a> e <a href="http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">70-480</a>, vou contar algumas dicas e impressões do exame.</p>
+<p><span id="more-641"></span></p>
+<h2>Sobre a prova</h2>
+<p>A prova segue o mesmo formato da 70-487, tendo aproximadamente 50 questões e 2 ou 3 casos de uso, que são cenários reais com vários requisitos que baseiam as questões. É necessária atenção especial a todos esses requisitos ao analisar as questões, pois um item ignorado pode significar uma alternativa a mais ou a menos que deveria ser marcada.</p>
+<p>Os tópicos cobrados no exame estão disponíveis na <a href="https://www.microsoft.com/pt-br/learning/exam-70-486.aspx" target="_blank">página oficial da prova</a>, bem como uma descrição rápida de cada tema.</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/05/70-486.png" alt="mind map" width="2669" height="1963" class="alignnone size-full wp-image-643" srcset="http://edneypitta.com/wp-content/uploads/2016/05/70-486.png 2669w, http://edneypitta.com/wp-content/uploads/2016/05/70-486-300x221.png 300w, http://edneypitta.com/wp-content/uploads/2016/05/70-486-1024x753.png 1024w" sizes="(max-width: 2669px) 100vw, 2669px" /></p>
+<div style="text-align: center;"><small><em>Mind map dos tópicos da prova. <a href="https://www.shanebart.com/microsoft-70-486-exam/" target="_blank">Fonte</a></em></small></div>
+<h2>Fonte de estudos</h2>
+<p>Na pesquisa que eu fiz, não encontrei na internet alguma fonte que cobrisse todos os itens da prova de forma completa. A maioria apontava para o site da MSDN e o livro oficial Exam Ref também não me agradou como o da prova 70-487.</p>
+<p>O que me ajudou nessa exame foi minha vivência. Trabalho com ASP.NET MVC desde o começo da carreira, então todos os assuntos são bem naturais para mim. Para cada tópico, fazia uma pesquisa rápida e lia 1 ou 2 posts para ter uma ideia do conteúdo.</p>
+<p>Uma fonte que ouvi falar bem é o <a href="https://www.pluralsight.com/blog/software-development/asp-net-mvc-microsoft-exam-70-486" target="_blank">Learning Path do Pluralsight</a>, que contém 60 horas de curso sobre os temas da prova. Se você não tem muita experiência com ASP.NET MVC, sugiro fazer os cursos para ganhar conhecimento para o dia a dia e também para o exame. Caso ainda não tenha, faça o cadastro no <a href="https://www.visualstudio.com/en-us/products/visual-studio-dev-essentials-vs.aspx" target="_blank">Visual Studio Dev Essentials</a> para ganhar 6 meses de assinatura do Pluralsight.</p>
+<h2>Dicas para o exame</h2>
+<p>A lista abaixo contém alguns itens que são bem prováveis de estarem na sua prova. Estude-os com mais atenção:</p>
+<ul>
+<li>Memorize bem algumas interfaces do framework o modo de implementá-las, como <em>IModelBinder</em>, <em>IHttpHandler</em> e <em>IHttpModule</em>;</li>
+<li>Como implementar <em>media queries</em> no CSS;</li>
+<li>O atributo HTML <code>video</code>;</li>
+<li>Conceito e implementação de <em>Bundle</em>;</li>
+<li>Quando usar <em>State Server</em>, <em>Session State</em> ou <em>Application State</em>;</li>
+<li>Como mapear rotas;</li>
+<li>Como usar a classe <a href="https://msdn.microsoft.com/pt-br/library/system.diagnostics.contracts.contract(v=vs.110).aspx" target="_blank">Contract</a>.</li>
+</ul>
+<hr />
+<p>É isso, pessoal. Com bastante estudo e dedicação, conquistei esse objetivo e espero ter ajudado outros na busca pela certificação também.</p>
+<p>Qualquer dúvida, não deixe de fazer um comentário!</p>
+<p>Obrigado e até mais <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/#comments</comments>
+		<pubDate>Tue, 12 Apr 2016 02:12:30 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-480]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=625</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? Continuando com o meu objetivo de me tornar MCSD em Web Applications, fiz a prova da certificação 70-480: Programming in HTML5 with JavaScript and CSS3. Fui aprovado com 968 pontos 🙂 Nesse post vou contar as minhas impressões da prova, como se preparar para o exame e algumas dicas finais. Sobre [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?</p>
+<p>Continuando com o meu objetivo de me tornar MCSD em Web Applications, fiz a prova da certificação 70-480: Programming in HTML5 with JavaScript and CSS3. Fui aprovado com 968 pontos <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Nesse post vou contar as minhas impressões da prova, como se preparar para o exame e algumas dicas finais.<br />
+<span id="more-625"></span></p>
+<h2>Sobre a prova</h2>
+<p>Indo direto ao ponto, essa certificação é <strong>bem</strong> mais simples do que a <a href="http://edneypitta.com/certificacao-microsoft-70-487-resultado/" target="_blank">70-487</a>, que fiz anteriormente. Além do conteúdo ser menor (e particularmente mais fácil), as questões são mais simples e em muitas delas você percebe a resposta correta só de bater o olho nas alternativas.</p>
+<p>A minha principal fonte de estudos foi o excelente study guide do blog <a href="http://www.bloggedbychris.com/2012/09/19/microsoft-exam-70-480-study-guide/" target="_blank">Blogged By Chris</a>. O guia é bem completo e tem pelo menos um link de conteúdo para cada tópico da prova, abrangendo todos os conhecimentos exigidos no exame.</p>
+<p><img class="alignnone size-full wp-image-628" src="http://edneypitta.com/wp-content/uploads/2016/04/Exam-2.png" alt="mind map" width="1416" height="1214" srcset="http://edneypitta.com/wp-content/uploads/2016/04/Exam-2.png 1416w, http://edneypitta.com/wp-content/uploads/2016/04/Exam-2-300x257.png 300w, http://edneypitta.com/wp-content/uploads/2016/04/Exam-2-1024x878.png 1024w" sizes="(max-width: 1416px) 100vw, 1416px" /></p>
+<div style="text-align: center;"><small><em>Mind map dos tópicos da prova. <a href="https://www.shanebart.com/microsoft-exam-70-480/" target="_blank">Fonte</a></em></small></div>
+<h2>Dicas para a prova</h2>
+<p>Vou listar abaixo alguns itens que merecem atenção especial quando você estiver se preparando para a prova:</p>
+<ul>
+<li>Tags semânticas do HTML5 (nav, article, header, figure/figcaption, etc.);</li>
+<li>Como implementar classes e herança em JavaScript;</li>
+<li>API para desenhar um canvas;</li>
+<li>API para implementar Web Worker;</li>
+<li>MS Grid;</li>
+<li>Fazer requisições AJAX com XMLHttpRequest e jQuery.</li>
+</ul>
+<hr />
+<p>E é isso. Para quem for fazer a prova, boa sorte e bons estudos! </p>
+<p>Minha próxima (e última) certificação para obter o MCSD é a 70-486: Developing ASP.NET MVC Web Applications. Possuo bastante experiência no assunto mas a prova é bem desafiadora, como a 70-487. Já adianto um guia de estudo publicado pelo José Barbosa no <a href="http://blog.lambda3.com.br/2016/01/guia-de-estudo-para-certificacao-microsoft-70-486/" target="_blank">blog da Lambda3</a>, com Mind Map e planilha colaborativa.</p>
+<p>Depois da prova faço um post como esse aqui, com algumas dicas e impressões da prova.</p>
+<p>Obrigado pela leitura e até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487 &#8211; Resultado</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-resultado/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-resultado/#comments</comments>
+		<pubDate>Fri, 18 Mar 2016 21:05:14 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=617</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? Em novembro do ano passado decidi tirar a certificação da Microsoft MCSD em Web Applications, começando pelo exame 70-487: Developing Microsoft Azure and Web Services. Fiz um post contando a minha estratégia de estudos, que seria escrever um post sobre cada tópico da prova baseado no livro Exam Ref da Microsoft [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?</p>
+<p>Em novembro do ano passado decidi tirar a certificação da Microsoft MCSD em Web Applications, começando pelo exame 70-487: Developing Microsoft Azure and Web Services. Fiz um post contando a minha estratégia de estudos, que seria escrever um post sobre cada tópico da prova baseado no livro Exam Ref da Microsoft (você pode ver os links <a href="http://edneypitta.com/certificacao-microsoft-70-487-developing-microsoft-azure-and-web-services/">aqui</a>).</p>
+<p>No dia que terminei o último dos 31 posts (que totalizaram 32697 palavras <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f62e.png" alt="😮" class="wp-smiley" style="height: 1em; max-height: 1em;" /> ), marquei a prova já para o dia seguinte. Estudei algum conteúdo sobre as atualizações da prova de 2014 e o resultado foi: <strong>aprovado!</strong></p>
+<p>Para quem quiser também passar na prova, alguns pontos de atenção:<br />
+<span id="more-617"></span></p>
+<ul>
+<li>Estude sobre <strong>todo </strong>o conteúdo da prova, mesmo que você já tenha experiência em algum dos tópicos. Por exemplo, a seção que eu menos pontuei foi de Entity Framework, uma tecnologia que eu tenho bastante familiaridade;</li>
+<li>No tópico sobre acesso a dados, memorize bem o conteúdo do objetivo <a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-1-3-implement-transactions/" target="_blank">Implement transactions</a>, principalmente a parte sobre Isolation Level. É um tema que não faz parte do nosso cotidiano e pode causar bastante confusão;</li>
+<li>Sobre WCF, saiba <strong>bem </strong>como configurar um serviço via arquivo de configuração (<em>App.config</em>). O objetivo que trata mais desse assunto é o <a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-3-2-configure-wcf-services-by-using-configuration-settings/" target="_blank">Configure WCF services by using configuration settings</a>. Também dê atenção ao <em>Azure Service Bus</em>, coberto no objetivo <a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-3-7-create-and-configure-a-wcf-service-on-windows-azure/" target="_blank">Create and configure a WCF service on Azure</a>;</li>
+<li>Sobre Web API, saiba bem quando utilizar cada método HTTP e as diferenças entre eles. O objetivo é o <a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-4-1-design-a-web-api/" target="_blank">Design a Web API</a>.</li>
+</ul>
+<p>E é isso <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Minha próxima certificação é a 70-480: Programming in HTML5 with JavaScript and CSS3. Não vou postar sobre todo o conteúdo da prova como fiz com a 70-487 porque o conteúdo é mais simples, mas com certeza farei um post sobre as impressões da prova como este aqui, com algumas dicas e referências.</p>
+<p>Obrigado e até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-resultado/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/#comments</comments>
+		<pubDate>Wed, 09 Mar 2016 20:32:39 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=570</guid>
+		<description><![CDATA[<p>Esse é o último post da série sobre a certificação Microsoft 70-487. Os links para todos os posts estão aqui. Olá pessoal, tudo bem? Vamos ao último objetivo da certificação, o Share assemblies between multiple applications and servers. Esse objetivo cobre como preparar o ambiente para usar assemblies entre múltiplos servidores, assinar assemblies com um [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<blockquote><p>Esse é o último post da série sobre a certificação Microsoft 70-487. Os links para todos os posts estão <a href="http://edneypitta.com/certificacao-microsoft-70-487-developing-microsoft-azure-and-web-services/">aqui</a>.</p></blockquote>
+<p>Olá pessoal, tudo bem?<br />
+Vamos ao último objetivo da certificação, o <strong>Share assemblies between multiple applications and servers</strong>.</p>
+<p>Esse objetivo cobre como preparar o ambiente para usar assemblies entre múltiplos servidores, assinar assemblies com um strong name, fazer o deploy de assemblies para o GAC (global assembly cache), implementar versionamento de assemblies e criar um assembly manifest. Vamos lá?</p>
+<h2>Preparando O Ambiente Para Usar Assemblies Entre Múltiplos Servidores</h2>
+<p>Quando você faz o deploy da sua aplicação, todo o código (inclusive o .NET Framework) é compilado para assemblies (DLLs) que são lidos e carregados na memória pelo IIS. Em casos onde um servidor hospeda várias aplicações, vários assemblies serão deployados redundantemente. Por exemplo, se existem 3 aplicações MVC, o assembly <em>System.Web.Mvc</em> será carregado 3 vezes na memória. Isso aumenta o tempo de inicialização e o uso da memória do seu servidor.</p>
+<p>Para essa seção, você deve entender 2 conceitos que o ASP.NET utiliza na hospedagem de aplicações para resolver esse problema: <em>Shadow Copying</em> e <em>Assembly Interning</em>.</p>
+<p>Shadow Copying é útil no momento de atualização dos assemblies. Normalmente, o CLR (Commom Language Runtime) trava os assemblies quando eles estão em execução. Isso significa que você não pode simplesmente copiar uma nova versão em cima da atual. O Shadow Copying atua nesses cenários copiando o assembly original para a pasta de arquivos temporários do ASP.NET, travando a cópia e liberando a atualização do assembly na localização original. Isso é habilitado por padrão nas pastas de assemblies (bin).</p>
+<p>O Assembly Interning, disponível a partir do ASP.NET 4.5, analisa essa pasta temporária procurando por assemblies duplicados (usados 3 vezes ou mais), como no caso de 3 aplicações MVC no mesmo servidor. Esses assemblies são então movidos para uma localização especial, e todas as referências originais são substituídas com &#8220;links simbólicos&#8221;, que apontam para essa nova localização quando as aplicações fazem requisições aos assemblies que foram compartilhados. Dessa forma, todos esses assemblies são carregados apenas uma vez na memória, economizando tempo e recursos.</p>
+<p>Você usa o Assembly Interning pela ferramenta <em>aspnet_intern.exe</em>, na linha de comando. Ela pode ser usada assim:</p>
+<p><code>aspnet_intern -mode exec -sourcedir "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files" -interndir C:\CommonAssemblies</code></p>
+<p>Há também um modo de análise, onde a ferramenta mostra quais assemblies podem ser compartilhados:</p>
+<p><code>aspnet_intern -mode analyze -sourcedir "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files" -v</code></p>
+<h2>Assinando Assemblies Com Um Strong Name</h2>
+<p>O CLR suporta dois tipos de assemblies: os regulares e os com strong name (<em>&#8220;nome forte&#8221;</em>). Ambos têm a mesma estrutura, mas os fortemente nomeados têm chaves públicas e privadas que identificam o publicador e o conteúdo do assembly. </p>
+<p>Isso garante singularidade, pois nenhum assembly pode ter o mesmo nome forte que o seu (o nome é baseado na chave privada). Os outros benefícios são que somente você pode publicar atualizações para o assembly e que o .NET consegue checar a integridade do assembly desde o momento que ele foi assinado.</p>
+<p>Você pode assinar um assembly via linha de comando ou pelo Visual Studio. O primeiro passo é gerar as chaves privada e pública por meio de um arquivo <em>.snk</em>. O seguinte comando gera esse arquivo:</p>
+<p><code>sn -k myKey.snk</code></p>
+<p>Pelo Visual Studio, isso é feito na página de Properties do projeto, na aba Signing:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/26.png" alt="signing" width="715" height="554" class="alignnone size-full wp-image-604" srcset="http://edneypitta.com/wp-content/uploads/2016/03/26.png 715w, http://edneypitta.com/wp-content/uploads/2016/03/26-300x232.png 300w" sizes="(max-width: 715px) 100vw, 715px" /></p>
+<p>Habilitando a opção Sign the assembly, o Visual Studio gera o arquivo com a chave e assina o assembly no momento da compilação.</p>
+<p>Assemblies assinados só podem referenciar assemblies que também são assinados por motivos de segurança. Caso você referencie um assembly não assinado, ao invocar qualquer código desse assembly o erro <em>Assembly generation failed &#8212; Referenced assembly &#8216;MyLib&#8217; does not have a strong name</em> é lançado.</p>
+<p>Após assinar um assembly, você pode ver a chave pública pela ferramenta <em>Sn.exe</em>, instalada no Visual Studio. O seguinte comando pode ser usado:</p>
+<p><code>sn -Tp C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Data.dll</code></p>
+<p>O resultado é o seguinte, onde o <em>Public key token</em> representa a chave pública:</p>
+<p><em>Microsoft (R) .NET Framework Strong Name Utility Version 4.0.30319.17929 Copyright (c)<br />
+Microsoft Corporation. All rights reserved.<br />
+Identity public key (hash algorithm: Unknown): 00000000000000000400000000000000<br />
+Signature public key (hash algorithm: sha256): 002400000c800000<br />
+140100000602000000240000525341310008000001000100613399aff18ef1<br />
+a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a2<br />
+35e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b<br />
+5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c<br />
+8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f<br />
+9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f3<br />
+02d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd9<br />
+11f0571aaf3d54da12b11ddec375b3<br />
+Public key token is b77a5c561934e089</em></p>
+<p>Para empresas, é importante manter a chave privada segura, pois alguém pode roubá-la e distribuir assemblies alterados que parecem legítimos. Porém, sem a chave privada, os desenvolvedores não conseguem assinar o assembly para construir a aplicação. </p>
+<p>Para evitar esse problema, o conceito de <em>delay/partial signing</em> foi criado. Com isso, os desenvolvedores conseguem assinar o assembly somente com a chave pública, deixando para assinar o assembly com a chave privada somente no momento da publicação. Na figura acima no Visual Studio, a opção Delay sign only faz isso.</p>
+<p>Lembre-se para o exame dos benefícios de assinar um assembly e quando usar delayed signing.</p>
+<h2>Fazendo O Deploy De Assemblies Para O GAC (Global Assembly Cache)</h2>
+<p>GAC (Global Assembly Cache) é uma biblioteca especializada em guardar assemblies. Fazer o deploy de um assembly para o GAC significa que ele estará disponível para todas as aplicações hospedadas naquele servidor.</p>
+<p>Usar o GAC é útil quando um assembly é compartilhado entre múltiplas aplicações. Outra razão é para melhoria de segurança, visto que normalmente somente administradores conseguem alterar o GAC. O GAC também é conveniente para fazer o deploy de múltiplas versões do mesmo assembly.</p>
+<p>Para o servidor de produção, você pode fazer o deploy de um assembly para o GAC por meio de alguma ferramenta como o Windows Installer 2.0 ou com o Web Deploy configurado com um provider para fazer a instalação do arquivo no GAC. </p>
+<p>No ambiente de desenvolvimento, você usa uma ferramenta chamada <em>Gacutil.exe</em>. Os seguintes comandos podem ser utilizados:</p>
+<ul>
+<li><code>gacutil -l</code> lista o conteúdo do GAC;</li>
+<li><code>gacutil -i [assembly name]</code> instala um assembly no GAC;</li>
+<li><code>gacutil -u [assembly name]</code> remove um assembly do GAC.</li>
+</ul>
+<p>Ao referenciar um assembly no seu projeto, você pode adicionar uma referência ao arquivo no GAC ou uma cópia local. Quando o Visual Studio detecta que há um assembly do GAC referenciado, ele adiciona a referência ao GAC.</p>
+<h2>Implementando Versionamento De Assemblies</h2>
+<p>Cada assembly carrega no seu manifesto o número da sua versão no seguinte formato: <em>{Major}.{Minor}.{Build}.{Revision}</em>.</p>
+<p>Ao fazer o build de um assembly, há 2 números de versão que você deve levar em conta: a versão do arquivo e a versão do assembly .NET. Quando um projeto é criado no Visual Studio, o arquivo <em>AssemblyInfo.cs</em> é automaticamente criado contendo as seguintes linhas:</p>
+<p><code>[assembly: AssemblyVersion("1.0.0.0")]<br />
+[assembly: AssemblyFileVersion("1.0.0.0")]</code></p>
+<p><em>AssemblyFileVersionAttribute</em> é o que deve ser incrementado a cada build no seu processo de build. <em>AssemblyVersionAttribute</em> deve ser incrementado manualmente a cada deploy para produção.</p>
+<p>Como dito anteriormente, múltiplas versões de um mesmo assembly podem ser deployados para o GAC. Isso é chamado <em>side-by-side hosting</em>.</p>
+<p>O processo de encontrar o assembly correto para ser carregado pelo CLR começa no número da versão mencionado no manifesto. Mas isso pode ser influenciado por alguns arquivos de configuração, como o da aplicação, do Publisher Policy ou da Machine Configuration.</p>
+<p>Vamos supor que você tem um assembly carregado no GAC e várias aplicações dependem dele. Caso você publique uma nova versão e queira forçar as aplicações a usarem essa nova versão, você pode publicar um Publisher Policy para o GAC com a seguinte configuração:</p>
+<p><script src="https://gist.github.com/edneypitta/c6daa1121fc7ecc03430.js"></script></p>
+<p>Nesse exemplo, quando o CLR procura o assembly com a versão 1.0.0.0, é redirecionado para o 2.0.0.0.</p>
+<p>Caso todos os assemblies estejam privados dentro da aplicação, você pode adicionar a seção de <em>probing </em>no arquivo web.config para o CLR procurar em outro diretório. Exemplo:</p>
+<p><script src="https://gist.github.com/edneypitta/ea4c8abba64f5a633227.js"></script></p>
+<p>Outra opção é usar o elemento <em>codeBase</em> para especificar uma localização fora do diretório da aplicação, podendo ser outro computador da rede ou algum lugar na internet. </p>
+<p>Dois detalhes: os assemblies precisam ser fortemente nomeados (assinados) se estiverem fora da pasta da aplicação e os assemblies localizados em outro computador são baixados para uma pasta especial no GAC. </p>
+<p>Um exemplo de configuração do codeBase:</p>
+<p><script src="https://gist.github.com/edneypitta/627d66ca08e8b271f8fe.js"></script></p>
+<p>Para o exame, lembre-se que a opção de probing só pode ser usada para localizações dentro do caminho da aplicação, enquanto o codeBase permite outras localizações.</p>
+<h2>Criando Um Assembly Manifest</h2>
+<p>O Assembly Manifest é o lugar que contém os metadados do assembly e de todos os assemblies que ele depende.</p>
+<p>A ferramenta <em>ILDasm </em>analisa o conteúdo de assemblies compilados. Ela mostra da seguinte forma:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/8.png" alt="ildasm" width="562" height="301" class="alignnone size-full wp-image-607" srcset="http://edneypitta.com/wp-content/uploads/2016/03/8.png 562w, http://edneypitta.com/wp-content/uploads/2016/03/8-300x161.png 300w" sizes="(max-width: 562px) 100vw, 562px" /></p>
+<p>Note a presença do Assembly Manifest. Ele tem as seguintes funções:</p>
+<ul>
+<li>Enumera os arquivos do assembly;</li>
+<li>Governa como as referências ao tipo do assembly são mapeadas para os arquivos que contém a implementação;</li>
+<li>Enumera os assemblies que o assembly depende;</li>
+<li>Provê um nível de separação entre os consumidores do assembly e os detalhes da implementação;</li>
+<li>Renderiza a descrição do assembly.</li>
+</ul>
+<p>Ele ainda contém a identidade do assembly, como o nome, o número da versão, cultura e informações da assinatura. Você pode alterar esses valores no arquivo <em>AssemblyInfo.cs</em>, com os atributos <em>AssemblyCultureAttribute</em>, <em>AssemblyTitleAttribute </em>e <em>AssemblyDescriptionAttribute</em>.</p>
+<p>Por último, o Assembly Manifest normalmente está no Portable Executable (PE), como uma DLL ou .exe junto com o Intermediate Language (IL) que descreve o assembly. Você pode criar um assembly em múltiplos arquivos com um Assembly Manifest ou com o Assembly Manifest incorporado dentro de cada PE.</p>
+<hr />
+<p>E finalmente, terminamos <strong>todos </strong>os objetivos da certificação <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Logo faço um post com algumas informações da prova, como as atualizações que vieram em abril de 2014 e algumas dicas a mais.</p>
+<p>Obrigado por acompanhar essa jornada e até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.5 – Create, configure, and publish a web package</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/#respond</comments>
+		<pubDate>Wed, 09 Mar 2016 10:45:46 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=568</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? O objetivo Create, configure, and publish a web package, penúltimo da certificação, cobre aspectos do Web Deployment Framework, ou Web Deploy. Vamos ver como criar um IIS Install Package, configurar o processo de build para fazer o output de um Web Package e aplicar condições pré e pós deploy. Criando Um [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/">Certificação Microsoft 70-487: Objetivo 5.5 – Create, configure, and publish a web package</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?<br />
+O objetivo <strong>Create, configure, and publish a web package</strong>, penúltimo da certificação, cobre aspectos do Web Deployment Framework, ou Web Deploy.</p>
+<p>Vamos ver como criar um IIS Install Package, configurar o processo de build para fazer o output de um Web Package e aplicar condições pré e pós deploy.</p>
+<h2>Criando Um IIS Install Package</h2>
+<p>Nessa seção, vamos cobrir as 4 principais maneiras de se criar um pacote Web Deploy: Visual Studio, IIS, prompt de comando e Windows PowerShell.</p>
+<h4>Visual Studio</h4>
+<p>No Visual Studio, você pode usar a ferramenta Publish para criar um pacote Web Deploy. Ela permite que você adicione scripts de banco de dados ou execute Migrations do EF e mude connection strings do web.config.</p>
+<p>Você começa o processo no menu Build > Publish {nome do projeto} ou com o botão direito no projeto > Publish. A seguinte tela é mostrada:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/21.png" alt="publish web" width="765" height="603" class="alignnone size-full wp-image-594" srcset="http://edneypitta.com/wp-content/uploads/2016/03/21.png 765w, http://edneypitta.com/wp-content/uploads/2016/03/21-300x236.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></p>
+<p>Na seção Profile, você precisa criar um Publish Profile, que é guardado na solution para futuros publishs. Você pode criar um Publish Profile para cada ambiente que vai fazer o deploy da aplicação, como desenvolvimento, homologação e produção.</p>
+<p>Se você está fazendo deploy no Azure Websites, você pode fazer o download do Publish Profile diretamente do portal.</p>
+<p>Na segunda página da janela, você escolhe o método do deploy. No nosso caso, escolhemos <strong>Web Deploy</strong> ou W<strong>eb Deploy Package</strong>.</p>
+<p>Web Deploy faz o deploy diretamente para um servidor remoto que tem o serviço Web Deploy instalado. Você precisa colocar o endereço do servidor e as credenciais. O Web Deploy Package cria um pacote Web Deploy que você pode fazer a instalação manualmente. Você só precisa entrar com uma localização para o pacote e o nome do site, que pode ser mudado no momento do deploy:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/22.png" alt="publish web" width="763" height="601" class="alignnone size-full wp-image-595" srcset="http://edneypitta.com/wp-content/uploads/2016/03/22.png 763w, http://edneypitta.com/wp-content/uploads/2016/03/22-300x236.png 300w" sizes="(max-width: 763px) 100vw, 763px" /></p>
+<p>Na terceira parte você pode configurar opções como a configuração do build (Release por padrão), precompile do site, excluir arquivos do App_Data e configurar o banco de dados:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/23.png" alt="publish web" width="765" height="601" class="alignnone size-full wp-image-596" srcset="http://edneypitta.com/wp-content/uploads/2016/03/23.png 765w, http://edneypitta.com/wp-content/uploads/2016/03/23-300x236.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></p>
+<p>Após clicar em Publish, o Visual Studio vai gerar um pacote Web Deploy que você pode usar para fazer o deploy no IIS via IIS Manager ou linha de comando.</p>
+<p>Há algumas opções extras na página de Properties do seu projeto, nas páginas <strong>Package/Publish Web</strong> e <strong>Package/Publish SQL</strong>.</p>
+<p>Em Package/Publish Web, você seleciona os arquivos que quer fazer o deploy nas seguintes opções: somente os arquivos obrigatórios, todos os arquivos do projeto ou todos os arquivos na pasta do projeto. Você pode também selecionar uma opção para incluir as configurações do IIS Express para garantir que os servidores estão configurados corretamente.</p>
+<p>A página Package/Publish SQL é desabilitada por padrão, mostrando uma mensagem que você pode fazer as configurações na janela de Publish. Mas você pode habilitá-la e fazer as configurações para o banco de dados.</p>
+<h4>IIS</h4>
+<p>Após a instalação do Web Deploy, o IIS Manager suporta tanto a criação de pacotes Web Deploy como a importação deles para instalação. </p>
+<p>É possível criar pacotes para uma aplicação, site ou o servidor completo. Nesse último caso, o pacote contém todas as configurações do servidor como o applicationHost.config, registros do IIS, certificados SSL e o conteúdo de todas as aplicações hospedadas.</p>
+<p>Você exporta um pacote abrindo o IIS Manager, selecionando a aplicação, site ou servidor a ser exportado e indo em Export Application. A seguinte tela é mostrada:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/24.png" alt="export application package" width="730" height="556" class="alignnone size-full wp-image-597" srcset="http://edneypitta.com/wp-content/uploads/2016/03/24.png 730w, http://edneypitta.com/wp-content/uploads/2016/03/24-300x228.png 300w" sizes="(max-width: 730px) 100vw, 730px" /></p>
+<p>Na opção Manage Components, você pode configurar providers para configurações de registro, fazer o deploy de assemblies no GAC ou um banco de dados no pacote.</p>
+<p>O próximo passo no wizard permite que você configure parâmetros para os providers, como o nome do site ou a localização do banco de dados.</p>
+<p>Para fazer a importação de um pacote, você seleciona o servidor ou site e clica em Import Package. Esse pacote pode ter sido criado via exportação do IIS, Visual Studio ou linha de comando. Após selecionar a localização do pacote, uma janela é aberta para a seleção dos arquivos que você quer fazer o deploy. Você pode também especificar os valores dos parâmetros criados na exportação do pacote.</p>
+<p>Na importação, há uma opção chamada <em>whatif</em> que mostra as ações que serão feitas no deploy sem que elas sejam feitas de fato.</p>
+<h4>Prompt De Comando</h4>
+<p>A ferramenta usada na linha de comando é a <em>MSDeploy</em>. Você pode usá-la para sincronizar servidores, criar e fazer o deploy de pacotes. O comando a seguir, por exemplo, faz a sincronização de 2 servidores com a opção whatif:</p>
+<p><code>msdeploy -whatif -verb:sync -source:iisApp="Default Web Site/MyApp" -dest:iisApp="Default Web Site/MyApp", computerName=Server2</code></p>
+<p>Alguns segmentos importantes são:</p>
+<ul>
+<li><strong>verb</strong>: especifica a operação a ser feita (delete, dump, getDependencies, getSystemInfo ou sync);</li>
+<li><strong>source</strong>: especifica a fonte dos dados;</li>
+<li><strong>dest</strong>: especifica o destino da operação;</li>
+<li><strong>whatif</strong>: indica que o comando deve rodar sem fazer as alterações de fato.</li>
+</ul>
+<p>Para fazer um deploy com MSDeploy, você pode usar o <em>.cmd</em> gerado pelo Visual Studio na criação do pacote. O comando é o seguinte:</p>
+<p><code>ProjectName.deploy.cmd /y /m:https://DestinationServerName:8172/MSDeploy.axd</code></p>
+<p>Não é necessário memorizar todas as opções do Web Deploy para o exame. Saiba apenas a sintaxe básica, como a flag whatif. A lista completa das opções do MSDeploy pode ser vista <a href="https://technet.microsoft.com/en-us/library/dd569106.aspx" target="_blank">aqui</a>.</p>
+<h4>Windows PowerShell</h4>
+<p>O Windows PowerShell é uma ferramenta de linha de comando com capacidades extras. Como no prompt, você pode sincronizar servidores, criar e fazer o deploy de pacotes.</p>
+<p>Para usar o Web Deploy do PowerShell, você precisa instalar o snap-in <em>WDeploySnapin3.0</em> com o comando <code>Add-PSSnapin WDeploySnapin3.0</code>.</p>
+<p>Depois, você pode obter a lista dos comandos do Web Deploy com o comando <code>Get-Command -module WDeploySnapin3.0</code>. O resultado é:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/25.png" alt="powershell" width="680" height="487" class="alignnone size-full wp-image-599" srcset="http://edneypitta.com/wp-content/uploads/2016/03/25.png 680w, http://edneypitta.com/wp-content/uploads/2016/03/25-300x215.png 300w" sizes="(max-width: 680px) 100vw, 680px" /></p>
+<p>Para fazer um deploy, você primeiro precisa de um arquivo Publish Settings (o mesmo gerado pelo Visual Studio quando você cria ou importa um Publish Profile). O comando <em>New-WDPublishSettings</em> pode ser usado:</p>
+<p><code>$cred = Get-Credential<br />
+New-WDPublishSettings -ComputerName WebServer -Site WebSite1 -Credentials $cred<br />
+-AllowUntrusted -SiteUrl "http://www.mywebsite.com" -FileName C:\temp\mywebsite.<br />
+publishsettings -AgentType wmsvc</code></p>
+<p>O seguinte arquivo é criado após esse comando:</p>
+<p><script src="https://gist.github.com/edneypitta/28a592f72f0ba15893f6.js"></script></p>
+<p>Depois, o comando <em>Sync-WDApp</em> pode ser usado para fazer o deploy:</p>
+<p><code>Sync-WDApp "MyApp" "MyAppDeployedWithPowerShell" -DestinationPublishSettings "C:\temp\mywebsite.publishsettings"</code></p>
+<h2>Configurando O Processo De Build</h2>
+<p>Você pode configurar o processo de build no TFS para fazer o deploy da sua aplicação.</p>
+<p>Editando o template da build com o seguinte comando, você pode criar um pacote em Release para fazer o deploy manualmente:</p>
+<p><code>MSBuild "MyProjectName.csproj" /T:Package /P:Configuration=Release</code></p>
+<p>Também é possível especificar o parâmetro <code>/p:DeployOnBuild=True</code>, que com o publish settings correto, faz o deploy da sua aplicação automaticamente.</p>
+<h2>Aplicando Condições Pré e Pós Deploy</h2>
+<p>Com Web Deploy, você pode também executar ações antes e depois de fazer o deploy da aplicação.</p>
+<p>Você faz isso com as opções <em>preSync</em> e <em>postSync</em> em conjunto com <em>runcommand</em>:</p>
+<p><code>msdeploy -verb:sync -source:contentPath="C:\Test1" -dest:contentPath="C:\Test2"<br />
+<strong>-preSync</strong>:runcommand="c:\MyBatchFile.bat"</code></p>
+<hr />
+<p>Terminamos mais um objetivo <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Fique de olho no próximo post que será sobre o <strong>último</strong> objetivo da certificação, <strong><a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Share assemblies between multiple applications and servers</a></strong>.</p>
+<p>Até lá!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/">Certificação Microsoft 70-487: Objetivo 5.5 – Create, configure, and publish a web package</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/#respond</comments>
+		<pubDate>Tue, 08 Mar 2016 13:54:27 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=566</guid>
+		<description><![CDATA[<p>Olá pessoal! O objetivo 5.4, Manage packages by using NuGet, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes. Vamos lá? Instalando E Atualizando Um Pacote NuGet Existente O NuGet permite que você instale bibliotecas para usar no seu código. Caso [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/">Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal!<br />
+O objetivo 5.4, <strong>Manage packages by using NuGet</strong>, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes. Vamos lá?</p>
+<h2>Instalando E Atualizando Um Pacote NuGet Existente</h2>
+<p>O NuGet permite que você instale bibliotecas para usar no seu código. Caso veja no exame alguma coisa sobre referenciar bibliotecas populares, pense em NuGet. Um pacote NuGet, além de ter uma série de assemblies que você pode referenciar, pode conter arquivos, como JavaScripts e CSSs. Também podem alterar seu arquivo de configuração ou adicionar código no seu projeto. A grande vantagem é que, ao invés de você ter que manualmente baixar assemblies ou arquivos, o NuGet faz isso automaticamente para você.</p>
+<p>A partir do Visual Studio 2012, os templates de projetos são baseados no NuGet. Se você criar uma aplicação ASP.NET MVC com o template de Internet, por exemplo, um arquivo chamado <em>packages.config</em> é criado contendo todas as referências ao pacotes utilizados. Esse arquivo é parecido com isso:</p>
+<p><script src="https://gist.github.com/edneypitta/b0337d6edfc55f24fb7c.js"></script></p>
+<h4>Janela Manage NuGet Packages</h4>
+<p>A janela Manage NuGet Packages serve para você gerenciar os pacotes instalados no seu projeto e instalar novos pacotes.</p>
+<p>Você pode acessá-la pelo Visual Studio no menu Tools > Library Package Manager > Manage NuGet Packages. Desse modo, os pacotes da solution inteira são abertos:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/19.png" alt="manage nuget packages" width="850" height="568" class="alignnone size-full wp-image-579" srcset="http://edneypitta.com/wp-content/uploads/2016/03/19.png 850w, http://edneypitta.com/wp-content/uploads/2016/03/19-300x200.png 300w" sizes="(max-width: 850px) 100vw, 850px" /></p>
+<p>Indo na seção Online, você pode procurar os pacotes disponíveis e instalá-los diretamente do Visual Studio. Na parte Update, o Visual Studio detecta todas as atualizações disponíveis e você pode instalá-las com 1 clique.</p>
+<p>Você pode abrir os pacotes instalados apenas para 1 projeto, clicando com o botão direito em References > Manage NuGet Packages. A tela funciona exatamente igual.</p>
+<p>Outra grande vantagem do NuGet é que, ao instalar ou atualizar um pacote, ele detecta automaticamente todas as dependências e as instala juntamente com o pacote.</p>
+<h4>Package Manager Console</h4>
+<p>Para instalar, atualizar ou remover pacotes, você pode também usar o Package Manager Console, que é um Windows PowerShell integrado ao Visual Studio. Ele é assim:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/20.png" alt="package manager console" width="835" height="319" class="alignnone size-full wp-image-580" srcset="http://edneypitta.com/wp-content/uploads/2016/03/20.png 835w, http://edneypitta.com/wp-content/uploads/2016/03/20-300x115.png 300w" sizes="(max-width: 835px) 100vw, 835px" /></p>
+<p>Para instalar um pacote, o comando <em>Install-Package</em> pode ser usado. Exemplo: <code>Install-Package Ninject</code>.</p>
+<p>Com isso, o assembly do Ninject é baixado para a pasta <em>packages</em> da solution e uma referência é adicionada ao projeto. </p>
+<p>Uma feature interessante do console é o auto complete, acionado quando você aperta a tecla Tab. Ele funciona para os nomes dos comandos e dos pacotes.</p>
+<p>Para desinstalar um pacote, o comando é o <em>Uninstall-Package</em>: <code>Uninstall-Package Ninject</code>.</p>
+<p>Esse comando remove o pacote do packages.config, remove a referência do projeto e deleta a pasta da packages. Todas as alterações aos arquivos de configuração também são revertidas. Porém, as dependências instaladas não são automaticamente removidas.</p>
+<p>Para atualizar um pacote, o comando é <em>Update-Package</em>: <code>Update-Package Ninject</code>.</p>
+<p>Caso você não especifique um pacote para o comando Update-Package, todos os pacotes da solution são atualizados. Para atualizar todos os pacotes de apenas um projeto, o parâmetro <em>-Project</em> pode ser usado: <code>Update-Package -Project NuGetTest</code>.</p>
+<p>Alguns pacotes oferecem comandos que são integrados ao console. Após instalar o pacote do Entity Framework, por exemplo, você pode usar os comandos <em>Enable-Migrations</em>, <em>Add-Migration</em> e <em>Update-Database</em> para usar Code First Migrations.</p>
+<p>O último detalhe é que os comandos são executados por padrão para o primeiro projeto da solution. Isso pode ser alterado no drop-down <em>Default project</em>.</p>
+<h4>Compartilhando Pacotes</h4>
+<p>Incluir os pacotes no controle de versão não é uma boa prática, pois todos eles serão guardados e baixados para cada pessoa que acessar o projeto. Se você esquecer de adicionar um pacote no controle de versão, também vai haver problemas para os outros usuários.</p>
+<p>Ao clicar com o botão direito na solution no Visual Studio, você pode habilitar a opção <em>Enable Package Restore On Build</em>. Ao fazer isso, uma pasta <em>.nuget</em> é adicionada na solution com um arquivo <em>NuGet.exe</em>. Dessa forma, no build do projeto o NuGet vai validar se todos os pacotes estão instalados e, se algum estiver faltando, vai fazer o download automaticamente. Isso permite que você não precise colocar os pacotes no controle de versão.</p>
+<p>Se você quer mudar a localização dos pacotes instalados, basta adicionar um arquivo <em>nuget.config</em> na solution com o seguinte conteúdo:</p>
+<p><script src="https://gist.github.com/edneypitta/601c40aa7b91a12e374d.js"></script></p>
+<h2>Criando E Configurando Um Pacote NuGet</h2>
+<p>Qualquer pessoa pode adicionar um pacote NuGet na galeria, tornando-o disponível a todos. Essa seção explica como criar e configurar um pacote para disponibilizá-lo na galeria.</p>
+<h4>Conteúdo Do Pacote</h4>
+<p>Um pacote NuGet é descrito pelo arquivo <em>.nuspec</em>, contendo um XML que descreve seu pacote. Ele é mais ou menos assim:</p>
+<p><script src="https://gist.github.com/edneypitta/f61b190e57772dadb1e3.js"></script></p>
+<p>Em seguida, você vai colocar seus arquivos. A convenção é distribuí-los em 3 pastas: <em>\lib</em>, <em>\content</em> e <em>\tools</em>.</p>
+<p>A pasta lib contém os assemblies. Se seu pacote for multiplataforma, você pode usar subpastas para separar essas versões.</p>
+<p>A pasta content tem arquivos de configuração, imagens, JavaScript, CSS, etc. Todos os arquivos nessa pasta serão incluídos no projeto. Isso significa que se você tiver uma imagem em <em>\content\images\myimg.png</em>, ela será adicionada no projeto em <em>\images\myimg.png</em>.<br />
+Arquivos de transformação também podem ser colocados nessa pasta. Se houver um arquivo <em>app.config.transformation</em> ou <em>web.config.transformation</em>, o NuGet vai colocar os elementos desses arquivos que não estiverem no arquivo de configuração do projeto.<br />
+Isso também é possível via código com arquivos <em>.cs.pp</em> quando você quer adicionar código no Global.asax ou alguma classe, por exemplo. Há alguns tokens que podem ser usados, como o <em>$rootnamespace$</em>, que insere o namespace correto: <code>namespace $rootnamespace$.Models</code>.</p>
+<p>Por fim, na pasta tools podem ser colocados scripts Windows PowerShell para rodar quando seu pacote é carregado, instalado e desinstalado, com os nomes <em>Init.ps1</em>, <em>Install.ps1</em> e <em>Uninstall.ps1</em>, respectivamente.</p>
+<p>Um último detalhe é que se seu pacote não tiver nada dentro das pastas content e lib ele é considerado um pacote a nível de solution. Você usa isso se seu objetivo for adicionar comandos ao Package Manager Console, como o pacote do Entity Framework.</p>
+<h4>Criando Seu Pacote NuGet</h4>
+<p>Você pode criar seu pacote NuGet via linha de comando ou usando a ferramenta <em>NuGet Package Explorer</em>.</p>
+<p>Para usar a linha de comando, você deve ter o arquivo <em>NuGet.exe</em> e adicionar a localização dele no PATH.</p>
+<p>O primeiro comando que você deve utilizar é o <code>NuGet Update -self</code>, que atualiza o NuGet para a última versão.</p>
+<p>Para criar um pacote NuGet a partir de um assembly, o comando é o <code>nuget spec MyAssembly.dll</code>. Com isso o arquivo <em>MyAssembly.nuspec</em> é criado contendo o manifesto para você editar o nome, descrição, dependências, etc.</p>
+<p>Depois disso, o comando <code>nuget pack MyAssembly.nuspec</code> cria de fato seu pacote no arquivo <em>MyAssembly.dll.1.0.0.nupkg</em>. Você pode testá-lo no Visual Studio abrindo o Package Manager Console e digitando o comando <code>Install-Package MyAssembly.dll -Source "C:\{location_of_your_package}"</code>. </p>
+<p>Você pode também criar um pacote NuGet a partir de um projeto do Visual Studio. Basta ir para a pasta do projeto (onde está o arquivo <em>.csproj</em>) e rodar o comando <code>nuget spec</code>. O arquivo <em>.nuspec</em> vai ser criado obtendo os tokens de id, versão, autor e descrição do arquivo <em>AssemblyInfo.cs</em> do projeto. Depois o comando <code>nuget pack MyProject.csproj</code> cria o pacote completo.</p>
+<p>Para criar um pacote complexo que contenha as pastas lib, content e tools, você precisa criar seu pacote manualmente com o comando <code>nuget spec</code>, editar o arquivo <em>.nuspec</em> como desejado, adicionar os arquivos nas pastas e criar o pacote com <code>nuget pack YourPackage.nuspec</code>.</p>
+<p>Com seu pacote pronto, você vai publicá-lo no NuGet. Com a API Key gerada no site do NuGet, você deve primeiro rodar o comando <code>NuGet SetApiKey Your-API-Key</code>. Depois, a publicação é feita com <code>NuGet Push YourPackage.nupkg</code>.</p>
+<p>A outra opção para criar e publicar um pacote é usando o programa <em>NuGet Package Explorer</em>. Essa ferramenta permite que você crie o manifesto com um editor gráfico, adicione arquivos nas pastas lib, content e tools e publique o pacote para o NuGet com 1 clique. Você pode também abrir pacotes, tanto locais quanto do feed, para explorar o conteúdo.</p>
+<h2>Preparando Um Repositório De Pacotes</h2>
+<p>Por padrão, o Visual Studio configura o repositório oficial do NuGet para obter pacotes. Você pode adicionar repositórios adicionais, tanto locais quanto remotos.</p>
+<p>Para criar um repositório local, você vai em Tools > Library Package Manager > Package Manager Settings. Na aba Package Source, a seguinte tela é mostrada:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/7.png" alt="options" width="803" height="470" class="alignnone size-full wp-image-583" srcset="http://edneypitta.com/wp-content/uploads/2016/03/7.png 803w, http://edneypitta.com/wp-content/uploads/2016/03/7-300x176.png 300w" sizes="(max-width: 803px) 100vw, 803px" /></p>
+<p>Depois é só clicar o botão Add, colocar um nome e um caminho. Todos os arquivos <em>.nupkg</em> serão listados na aba Online da janela Manage NuGet Packages e no Package Manager Console, no drop-down Package-source.</p>
+<p>Você pode também criar um feed remoto que roda no IIS. Você deve criar uma web application vazia no Visual Studio e instalar o pacote <em>NuGet.Server</em>. Esse pacote adiciona todo o código necessário para a exposição dos seus pacotes como ATOM. Os pacotes dentro da pasta <em>Packages </em>serão disponibilizados (podendo ser configurado via web.config). </p>
+<p>É possível habilitar publicações para seu repositório remoto, como se fosse a galeria oficial do NuGet. Para isso basta adicionar a API Key no web.config.</p>
+<p>Depois, basta hospedar sua aplicação no IIS e acessar o feed na URL <em>http://{locationofyoursite}/nuget/</em>. Adicionando essa URL no Package Source, é possível instalar pacotes desse repositório normalmente.</p>
+<hr />
+<p>E isso é tudo <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Obrigado pela leitura e aguarde o próximo post, que será sobre o objetivo <strong><a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/">Create, configure, and publish a web package</a></strong>.</p>
+<p>Até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/">Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.3 – Configure a web application for deployment</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/#respond</comments>
+		<pubDate>Sat, 05 Mar 2016 15:07:44 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=564</guid>
+		<description><![CDATA[<p>Olá pessoal! Vamos ao objetivo 5.3, Configure a web application for deployment. Esse objetivo cobre como trocar de release para debug, transformar web.config com XSLT, usar SetParameters e configurar o Windows Azure. Mudando De Release Para Debug Ao fazer o build de um projeto, você usa uma build configuration. Duas configurações existem por padrão: release [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/">Certificação Microsoft 70-487: Objetivo 5.3 – Configure a web application for deployment</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal!<br />
+Vamos ao objetivo 5.3, <strong>Configure a web application for deployment</strong>. Esse objetivo cobre como trocar de release para debug, transformar web.config com XSLT, usar SetParameters e configurar o Windows Azure.</p>
+<h2>Mudando De Release Para Debug</h2>
+<p>Ao fazer o build de um projeto, você usa uma <em>build configuration</em>. Duas configurações existem por padrão: <em>release </em>e <em>debug</em>.</p>
+<p>Em release, o código é otimizado para rodar o mais rápido possível, o que você com certeza deseja no ambiente de produção.</p>
+<p>O modo debug é o ideal para o ambiente de desenvolvimento, pois instruções extra são adicionadas no código compilado, permitindo que ela seja debugado.</p>
+<p>Além da build configuration, há uma configuração no web.config que diz respeito a compilação. Mudando o valor do atributo debug para false, você desliga o modo de debug:</p>
+<p><code>&lt;configuration&gt;<br />
+&lt;system.web&gt;<br />
+&lt;compilation debug=&quot;true&quot; targetFramework=&quot;4.5&quot; /&gt;<br />
+&lt;/system.web&gt;<br />
+&lt;/configuration&gt;</code></p>
+<p>No Visual Studio, você tem a opção de escolher quais debuggers utilizar no modo debug:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/5.png" alt="debuggers" width="848" height="500" class="alignnone size-full wp-image-572" srcset="http://edneypitta.com/wp-content/uploads/2016/03/5.png 848w, http://edneypitta.com/wp-content/uploads/2016/03/5-300x177.png 300w" sizes="(max-width: 848px) 100vw, 848px" /></p>
+<h2>Transformando O Web.Config Com XSLT</h2>
+<p>No seu arquivo web.config, você guarda vários tipos de configurações como connection strings, app settings customizadas, etc. Esses valores dependem do ambiente que a aplicação está rodando. Você não pode fazer o deploy de uma aplicação com a connection string do seu banco local, por exemplo. Fazer as alterações manualmente, além de levar tempo, é suscetível a erros. </p>
+<p>Aí entra o <em>web.config transformation syntax</em>. Com ele você define um XML que descreve as mudanças a serem feitas no web.config ao mudar de debug para release.</p>
+<p>Ao criar uma aplicação ASP.NET MVC, os arquivos de transformação são criados automaticamente:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/6.png" alt="web.config" width="335" height="486" class="alignnone size-full wp-image-573" srcset="http://edneypitta.com/wp-content/uploads/2016/03/6.png 335w, http://edneypitta.com/wp-content/uploads/2016/03/6-207x300.png 207w" sizes="(max-width: 335px) 100vw, 335px" /></p>
+<p>As transformações trabalham com a sintaxe do XML-Document-Transform. Segue um exemplo de arquivo de transformação que muda a connection string e configura o customErrors:</p>
+<p><script src="https://gist.github.com/edneypitta/f791c82d952679cc5ded.js"></script></p>
+<p>Você começa especificando o namespace para o arquivo de transformação. Depois, com os atributos <em>xdt:Transform </em>e <em>xdt:Locator</em>, você configura como os elementos devem ser encontrados e o que acontece quando isso acontecer. Nesse exemplo, apenas mudamos a connection string, mas o elemento customErrors é completamente substituído.</p>
+<p>Para o atributo Locator, você pode usar os valores Match, XPath e Condition. A explicação detalhada do funcionamento deles pode ser vista <a href="https://msdn.microsoft.com/en-us/library/dd465326(v=vs.110).aspx" target="_blank">aqui</a>. Para o atributo Transform, os possíveis valores são: Insert, InsertBefore, InsertAfter, Remove, RemoveAll, RemoveAttributes e SetAttributes.</p>
+<h2>Usando SetParameters Para Preparar Um IIS App Pool</h2>
+<p>A <em>web.config transformation</em> é feita em tempo de compilação. Isso é bom quando você sabe em quais ambientes a aplicação será publicada.</p>
+<p>Com Web Deploy, porém, você tem outra opção: <em>parametrização</em>. Com ela você pode parametrizar valores em tempo de instalação, facilitando a distribuição de um pacote para vários lugares. </p>
+<p>Um pacote Web Deploy cria alguns arquivos para você, como o <strong>{nome do projeto}.zip</strong>, que é o pacote Web Deploy, e o <strong>{nome do projeto}.deploy.cmd</strong>, que permite que você faça o deploy da linha de comando. Há também o arquivo <strong>{nome do projeto}.SetParameters.xml</strong>, que tem uma série de valores que o MSDeploy.exe usa para fazer o deploy da aplicação. Esse arquivo é gerado dinamicamente, obtendo todas as configurações do seu projeto, como as connection strings do web.config.</p>
+<p>A parametrização é feita quando você adiciona um arquivo <em>Parameters.xml</em> para o pacote Web Deploy. Nesse arquivo, você indica o arquivo que quer modificar, quais variáveis serão alteradas e um valor padrão para elas. Na instalação do pacote via IIS Manager, esses valores serão pedidos para o usuário digitar. </p>
+<p>Segue um exemplo de uma seção de um web.config abaixo de <em>system.ServiceModel</em>:</p>
+<p><script src="https://gist.github.com/edneypitta/5930e5636bade580aabe.js"></script></p>
+<p>O seguinte Parameters.xml pode ser usado:</p>
+<p><script src="https://gist.github.com/edneypitta/9b0fbeb75ed715cfe771.js"></script></p>
+<p>Segue a explicação de alguns atributos importantes:</p>
+<ul>
+<li><strong>name</strong>: o nome que é mostrado no IIS Manager;</li>
+<li><strong>description</strong>: a descrição que é mostrada no IIS Manager;</li>
+<li><strong>defaultValue</strong>: o valor que é pré-carregado no input;</li>
+<li><strong>scope</strong>: uma expressão regular que mostra os arquivos que o parâmetro se aplica;</li>
+<li><strong>kind</strong>: especifica o tipo do recurso na qual o parâmetro será aplicado (<em>XmlFile </em>ou <em>TextFile</em>);</li>
+<li><strong>match</strong>: no caso de XmlFile, um XPath que seleciona o elemento que será alterado.</li>
+</ul>
+<p>Caso você esteja fazendo o deploy pela linha de comando, você pode usar as opções <em>declareParamFile </em>and <em>setParamFile </em> para especificar os arquivos Parameters.xml e SetParameters.xml:</p>
+<p><code>msdeploy.exe -verb:sync -source:apphostconfig="default web site/application"<br />
+-dest:archivedir="C:\packages\application" <strong>-declareParamFile</strong>="C:\source\application\<br />
+deployment\declareParamsFile.xml"</code></p>
+<p><code>msdeploy.exe -verb:sync -dest:apphostconfig="default web site/application"<br />
+-source:archivedir="C:\packages\application" <strong>-setParamFile</strong>="C:\source\application\<br />
+deployment\setParamsFile.xml"</code></p>
+<p>Por último, caso você não queira alterar o arquivo SetParameters.xml na mão em um processo de build por exemplo, existe uma task do MSBuild chamada XmlPoke que pode automatizar isso.</p>
+<p>Para o exame, lembre-se do seguinte: web.config transformation é feita em tempo de compilação, enquanto parametrização em tempo de instalação.</p>
+<h2>Configurando O Windows Azure</h2>
+<p>Um projeto Cloud tem dois arquivos de configuração: <em>ServiceConfiguration.Cloud.cscfg</em> e <em>ServiceConfiguration.Local.cscfg</em>. O arquivo Local tem valores para o Windows Azure Emulator, enquando o Cloud tem os valores que serão usados no deploy para o Azure.</p>
+<p>Nesses arquivos você pode configurar o número de instâncias para cada role, quaisquer app settings customizadas, thumbprints para certificados, VPNs no caso de máquinas virtuais (VM), etc.</p>
+<p>Ao criar um projeto Cloud com uma web role e uma worker role, o seguinte arquivo de configuração é criado:</p>
+<p><script src="https://gist.github.com/edneypitta/1c5109148f7e28c56f69.js"></script></p>
+<p>O elemento <em>Role</em>, além de especificar o nome da sua role, pode também ter o atributo <em>vmName</em> para ser usado como o nome o DNS para sua VM.</p>
+<p>Dentro do elemento Role há o elemento <em>Instances</em> que indica o número de instâncias da role e o elemento <em>ConfigurationSettings</em>, que é uma coleção chave valor.</p>
+<p>Outros elementos que podem ser adicionados são o <em>Certificates</em> e o <em>OsImage</em>:</p>
+<p><script src="https://gist.github.com/edneypitta/b14ad00966a51d17182e.js"></script></p>
+<p>Depois do elemento <em>Roles</em>, você pode especificar o elemento <em>NetworkConfiguration</em>. Essa seção descreve os valores de DNS e VPN. Um exemplo de configuração:</p>
+<p><script src="https://gist.github.com/edneypitta/3b81287417d85f1d0a99.js"></script></p>
+<hr />
+<p>Chegamos ao final desse objetivo <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Faltam apenas 3!</p>
+<p>Obrigado pela leitura e fique de olho no próximo post, que será sobre o objetivo <strong><a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/">Manage packages by using NuGet</a></strong>.</p>
+<p>Até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/">Certificação Microsoft 70-487: Objetivo 5.3 – Configure a web application for deployment</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/#comments</comments>
+		<pubDate>Thu, 03 Mar 2016 15:05:14 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=555</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? Vamos ao objetivo Choose a deployment strategy for a Windows Azure web application, que fala de conceitos de deploy voltados para o Azure. Fazendo In-Place Upgrade E VIP Swap Em casos de web farm, o Azure oferece 3 maneiras de atualizar sua aplicação: deletando e redeployando, In-Place Upgrade e VIP Swap. [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/">Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?<br />
+Vamos ao objetivo <strong>Choose a deployment strategy for a Windows Azure web application</strong>, que fala de conceitos de deploy voltados para o Azure.</p>
+<h2>Fazendo In-Place Upgrade E VIP Swap</h2>
+<p>Em casos de web farm, o Azure oferece 3 maneiras de atualizar sua aplicação: deletando e redeployando, In-Place Upgrade e VIP Swap.</p>
+<p>Deletar seu cloud service e redeployar é fácil, mas requer um downtime para seu serviço. Você deve usar essa opção em casos de mudança de número de endpoints, porta, firewall, certificados, etc. </p>
+<h4>In-Place Upgrade</h4>
+<p>Para entender o <strong>In-Place Upgrade</strong>, é necessário entender os conceitos de <em>Upgrade Domain</em> e <em>Fault Domain</em>. Upgrade Domain é uma unidade lógica da sua aplicação, enquanto Fault Domain é uma unidade física. </p>
+<p>Vamos supor que você precisa de 5 instâncias para sua aplicação. <strong>Automaticamente</strong> (isso não é controlável por você), o Azure vai distribuir cada instância entre o número de Upgrade Domains que você configurou no atributo <em>upgradeDomainCount</em> no arquivo Service Definition (valor padrão: 5, valor máximo: 20). Na hora do deploy da sua aplicação (In-Place Upgrade), o Azure atualiza um Upgrade Domain por vez, evitando downtime para o seu serviço.</p>
+<p>Fault Domain, também automaticamente atribuído pelo Azure, é quando as instâncias são separadas em servidores físicos diferentes. Somente com 2 Fault Domains o Azure garante o SLA de 99.95%.</p>
+<p>Para entender melhor esses conceitos, recomendo esse post: <a href="https://blog.tompawlak.org/windows-azure-fault-and-upgrade-domain" target="_blank">https://blog.tompawlak.org/windows-azure-fault-and-upgrade-domain</a>. Vamos em frente.</p>
+<p>Você tem 2 opções para disparar um deploy In-Place Upgrade. A primeira é diretamente pelo portal do Azure, fazendo o upload do pacote direto para seu Cloud Service. A outra é pelo Visual Studio, que necessita de um certificado emitido pelo portal para identificação:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/16.png" alt="new subscription" width="534" height="444" class="alignnone size-full wp-image-557" srcset="http://edneypitta.com/wp-content/uploads/2016/03/16.png 534w, http://edneypitta.com/wp-content/uploads/2016/03/16-300x249.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></p>
+<p>Como dito antes, ao fazer um deploy, o Azure vai atualizar seus Upgrade Domains um por um. Então se você tiver mais do que 2 Upgrade Domains, no momento do deploy eles terão diferentes versões da sua aplicação. Isso pode ser um problema caso haja alterações no schema do banco de dados, por exemplo. Para resolver isso, existe uma técnica de deploy chamada VIP Swap.</p>
+<h4>VIP Swap</h4>
+<p>Um Cloud Service no Azure tem 2 ambientes: produção e staging. Ambos têm o mesmo hardware, diferenciando apenas o <em>virtual IP</em> (VIP) e a URL do serviço.</p>
+<p>O VIP Swap é quando o VIP e a URL dos ambientes de produção e staging são trocados. Isso significa que você pode fazer o deploy da nova versão da sua aplicação no ambiente de staging, testá-la, e promovê-la para produção instantaneamente com o VIP Swap. Depois, você pode deletar o ambiente de staging para evitar custos.</p>
+<p>Isso permite que você atualize todas as instâncias de uma só vez, evitando diferentes versões em produção ao mesmo tempo. Ainda vai haver requests que estão apontando para a versão antiga, mas o problema é bastante minimizado com essa técnica.</p>
+<p>Para realizar um VIP Swap, primeiro você precisa fazer o upload da nova versão da aplicação para o ambiente de staging, seja por deletando o serviço e redeployando ou via In-Place Upgrade. Depois de validado, basta ir no portal do Azure no ambiente de staging e clicar no botão Swap:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/17.png" alt="swap" width="848" height="545" class="alignnone size-full wp-image-558" srcset="http://edneypitta.com/wp-content/uploads/2016/03/17.png 848w, http://edneypitta.com/wp-content/uploads/2016/03/17-300x193.png 300w" sizes="(max-width: 848px) 100vw, 848px" /></p>
+<h2>Criando E Configurando Input E Internal Endpoints</h2>
+<p>Há dois tipos de endpoints para suas instâncias de Cloud Services: <em>Input Endpoint</em> e <em>Internal Endpoint</em>. Um Input Endpoint é usado para conexões externas (internet) feitas via HTTP, HTTPS ou TCP. Internal Endpoints são usados para conexões internas entre as instâncias do Cloud Services via HTTP ou TCP.</p>
+<p>Seu Cloud Service pode ter 25 endpoints de cada tipo, que podem ser espalhados entre as roles. Quando você cria um projeto Cloud com uma web role e uma worker role, o arquivo <em>ServiceDefinition.csdef</em> fica assim:</p>
+<p><script src="https://gist.github.com/edneypitta/4645e4befaa14c50df81.js"></script></p>
+<p>A web role por padrão vem com um input endpoint na porta 80, padrão para conexões HTTP. A worker role não tem endpoints por padrão, mas você pode adicionar um input endpoint sem problemas:</p>
+<p><code>&lt;Endpoints&gt;<br />
+&lt;InputEndpoint name=&quot;WorkerRoleInput&quot; port=&quot;8080&quot; protocol=&quot;http&quot; localPort=&quot;8080&quot;/&gt;<br />
+&lt;/Endpoints&gt;</code></p>
+<p>Agora o load balancer encaminha os requests na porta 8080 para a worker role. Dentro dela, você pode usar um HttpListener para lidar com os requests:</p>
+<p><script src="https://gist.github.com/edneypitta/e8460b46cf4f0d16e7d0.js"></script></p>
+<p>Um ponto importante é que no Windows Azure emulator, as portas são remapeadas para a próxima porta disponível, para evitar conflitos. Isso significa que a porta 80 será remapeada para 81 e a 8080 para 8081.</p>
+<p>Você também pode editar as configurações de endpoint diretamente do Visual Studio, clicando duas vezes no nome da role no projeto Cloud Services:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/18.png" alt="cloud service" width="849" height="397" class="alignnone size-full wp-image-560" srcset="http://edneypitta.com/wp-content/uploads/2016/03/18.png 849w, http://edneypitta.com/wp-content/uploads/2016/03/18-300x140.png 300w" sizes="(max-width: 849px) 100vw, 849px" /></p>
+<p>Ao selecionar o tipo do endpoint, há uma terceira opção chamada <em>InstanceInputEndpoint</em>. Nela você pode especificar um range de portas externas que são mapeadas para uma única porta. A configuração fica assim:</p>
+<p><code>&lt;InstanceInputEndpoint name=&quot;Endpoint2&quot; <strong>localPort</strong>=&quot;1000&quot; protocol=&quot;tcp&quot;&gt;<br />
+&lt;AllocatePublicPortFrom&gt;<br />
+&lt;FixedPortRange min=&quot;10016&quot; max=&quot;10020&quot;/&gt;<br />
+&lt;/AllocatePublicPortFrom&gt;<br />
+&lt;/InstanceInputEndpoint&gt;</code></p>
+<p>O elemento InstanceInputEndpoint especifica a porta local para onde os requests serão direcionados e o protocolo, enquanto o elemento AllocatePublicPortFrom especifica o range de portas públicas que serão ouvidas.</p>
+<h2>Especificando Configurações Do Sistema Operacional</h2>
+<p>Quando você cria um projeto Cloud Services, há dois arquivos de configuração: o <em>ServiceDefinition.csdef</em>, que especifica as configurações do Cloud Service como um todo, e o <em>ServiceConfiguration.cscfg</em> para configurações específicas das roles, como o número de instâncias, configurações de diagnostics, certificados, etc.</p>
+<p>Uma configuração importante para o exame é a especificação da versão do sistema operacional. Ao criar um novo projeto Cloud com uma web role e uma worker role, o arquivo .cscfg fica assim:</p>
+<p><script src="https://gist.github.com/edneypitta/5fcfc82186c1c810dd75.js"></script></p>
+<p>O atributo <em>osFamily</em> é o número da família do sistema operacional. A especificação completa das famílias e o suporte de cada uma delas pode ser vista <a href="https://azure.microsoft.com/pt-br/documentation/articles/cloud-services-guestos-update-matrix/" target="_blank">aqui</a>.</p>
+<p>O atributo <em>osVersion</em> especifica exatamente a versão do Guest OS em que sua role vai rodar. O valor * significa sempre a última versão. Para colocar uma versão específica, o seguinte formato deve ser utilizado: <code>WA-GUEST-OS-M.m_YYYYMM-nn</code>, onde <em>WA-GUEST-OS</em> é um valor fixo, <em>M.m</em> é o número da versão, <em>YYYY</em> o ano, <em>MM </em>o mês e <em>nn </em>um número sequencial para diferenciar os releases.</p>
+<hr />
+<p>Terminamos mais um objetivo <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Obrigado pela leitura e fique de olho no próximo post, que será sobre o objetivo 5.3: <strong><a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/">Configure a web application for deployment</a></strong>.</p>
+<p>Até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/">Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Certificação Microsoft 70-487: Objetivo 5.1 – Design a deployment strategy</title>
+		<link>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/</link>
+		<comments>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/#respond</comments>
+		<pubDate>Thu, 03 Mar 2016 03:33:34 +0000</pubDate>
+		<dc:creator><![CDATA[Edney Pitta]]></dc:creator>
+				<category><![CDATA[Certificação]]></category>
+		<category><![CDATA[70-487]]></category>
+
+		<guid isPermaLink="false">http://edneypitta.com/?p=546</guid>
+		<description><![CDATA[<p>Olá pessoal, tudo bem? Esse objetivo é o primeiro do tópico Deploying web applications and services, os últimos 20% da certificação. Nesse objetivo vamos ver como fazer o deploy de aplicações web usando XCopy, criar um IIS Install Package, automatizar deploys com TFS ou Build Server e fazer deploy para web farms. Fazendo Deploy De [&#8230;]</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/">Certificação Microsoft 70-487: Objetivo 5.1 – Design a deployment strategy</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>Olá pessoal, tudo bem?<br />
+Esse objetivo é o primeiro do tópico <strong>Deploying web applications and services</strong>, os últimos 20% da certificação. Nesse objetivo vamos ver como fazer o deploy de aplicações web usando XCopy, criar um IIS Install Package, automatizar deploys com TFS ou Build Server e fazer deploy para web farms.</p>
+<h2>Fazendo Deploy De Aplicações Web Usando XCopy</h2>
+<p>O jeito mais fácil de fazer o deploy de uma aplicação para um ambiente de produção é manualmente. Seja via FTP ou conexão remota, chamamos de XCopy quando você copia os arquivos da sua máquina local para uma de produção. XCopy, na verdade, é um comando DOS para transferência de vários arquivos ao mesmo tempo. A sintaxe dele é a seguinte:</p>
+<p><code>xcopy /I /S /E &lt;source path&gt; &lt;destination path&gt;</code></p>
+<p>A opção <em>/I</em> diz que você copiando uma pasta, a <em>/S</em> que você quer copiar todos os subdiretórios e a <em>/E</em> que as subpastas devem ser copiadas mesmo que vazias. Há também a opção <em>/d</em>, que indica que somente os arquivos novos atualizados ou novos devem ser copiados.</p>
+<h4>Configurando O IIS</h4>
+<p>Na primeira vez que você copiar os arquivos do seu site para seu servidor, você vai precisar configurá-lo no IIS, que é o servidor de hospedagem para aplicações no Windows. Você precisa dizer ao IIS qual é a pasta do seu site e como ele vai estar disponível para os usuários.</p>
+<p>Assumindo que você tenha uma aplicação em <em>C:\Development\MyApp</em> e quer movê-la para <em>C:\inetpub\wwwroot\MyApp</em>, o primeiro passo é fazer o XCopy:</p>
+<p><code>xcopy /I /S C:\Development\MyApp C:\inetpub\wwwroot\MyApp</code></p>
+<p>Para fazer a configuração no IIS, você abre o IIS Manager e a opção de adicionar um website. Você precisa dar um nome e apontar a localização da pasta (nesse caso, <em>C:\inetpub\wwwroot\MyApp</em>). Normalmente também você deve colocar um host name para o IIS mapear os requests HTTP na porta 80. </p>
+<p>No exemplo abaixo, alteramos a porta para 81 e deixamos o host name em branco, para podermos acessar o site somente pela porta. A configuração fica assim:</p>
+<p><img src="http://edneypitta.com/wp-content/uploads/2016/03/15.png" alt="iis add website" width="546" height="524" class="alignnone size-full wp-image-550" srcset="http://edneypitta.com/wp-content/uploads/2016/03/15.png 546w, http://edneypitta.com/wp-content/uploads/2016/03/15-300x288.png 300w" sizes="(max-width: 546px) 100vw, 546px" /></p>
+<p>Acessando <em>http://localhost:81</em> no browser, o ISS já consegue mapear o request e mandá-lo para a aplicação. </p>
+<h4>Preparando Um Website Para Deploy</h4>
+<p>Quando os arquivos são atualizados, o IIS detecta as modificações e começa a atualizar o site. Isso gera erros nos requests feitos enquanto a aplicação está parcialmente atualizada.</p>
+<p>Para evitar que os usuários vejam uma tela de erro, você pode colocar um arquivo com o nome <em>App_offline.htm</em> no root do website. O IIS então vai mostrar esse HTML ao invés da mensagem de erro. Após a atualização de todos os arquivos, você deve apagar esse arquivos para o IIS voltar a processar os requests.</p>
+<p>Outro ponto é que o App Domain pode restartar várias vezes enquanto os arquivos estão sendo atualizados. Você pode configurar o atributo <em>waitChangeNotification</em> no seu web.config para especificar o número de segundos de espera antes que o App Domain restarte:</p>
+<p><script src="https://gist.github.com/edneypitta/ef422e752129cc300612.js"></script></p>
+<h4>Ferramental Para Deploys XCopy</h4>
+<p>Usar o XCopy pela linha de comando não é a melhor maneira de você copiar seus arquivos. O Visual Studio oferece algumas ferramentas para auxiliar o processo de deploy, e vamos analisar uma delas agora: a Copy Website Tool. Nela você pode:</p>
+<ul>
+<li>Copiar arquivos de código para o target especificado;</li>
+<li>Copiar arquivos usando os protocolos suportados: IIS local, IIS remoto, FTP e HTTP (comente com FrontPage Server Extensions);</li>
+<li>Escolher quais arquivos quer sincronizar do seu código para o target;</li>
+<li>Automaticamente copiar o arquivo App_offline.htm quando o deploy começar e removê-lo quando terminar.</li>
+</ul>
+<h2>Criando Um IIS Install Package</h2>
+<p>Lançado em 2009, o Web Deploy permite que você crie um pacote de deploy que além dos arquivos do seu site contém configurações de banco de dados, IIS, registro, assemblies para carregar no GAC, etc.</p>
+<p>O Web Deployment Framework simplifica o processo podendo ser utilizado via Visual Studio, IIS, prompt de comando e Windows PowerShell. Também ajuda em ambientes complexos como web farm, onde você sincroniza diferentes servidores usando o Web Deploy.</p>
+<p>Para o exame, lembre-se: Web Deployment Framework é a ferramenta ideal para deploys complexos.</p>
+<h2>Automatizando Deploys Com TFS Ou Build Server</h2>
+<p>Por motivos fora do escopo do exame, você deve saber como automatizar o deploy de uma aplicação com TFS ou Build Server. É importante conhecer os conceitos por trás disso, como Continuous Integration e Continuous Deployment com testes de unidade e integração, mas estes não são prováveis de estarem no exame.</p>
+<p>Você pode automatizar o deploy de uma aplicação no Azure de forma bem fácil. Há uma opção &#8220;Set up deployment from source control&#8221; que implementa o conceito de Continuous Deployment: cada check-in no controle de versão dispara um deploy automaticamente. O repositório pode ser TFS ou Git.</p>
+<p>É possível também fazer isso on-premises com TFS. Você pode buildar sua aplicação via linha de comando com MSBuild da seguinte forma:</p>
+<p><code>MSBuild /target:Publish /p:PublishDir=\\myserver\drops\</code></p>
+<p>Depois, editando a Build Definition no TFS, você pode adicionar um comando de Publish para publicar o pacote no Azure.</p>
+<p>É importante entender que existem duas ferramentas TFS: uma on-premises e uma na nuvem, atualmente chamada VSTS.</p>
+<h2>Fazendo Deploys Para Web Farms</h2>
+<p>Para essa seção, você deve entender os conceitos de <em>scale up</em> e <em>scale out</em>. </p>
+<p><strong>Scale up</strong> é quando você aumenta a capacidade do seu hardware para fazer uma melhora de performance na sua aplicação. Isso é feito quando você coloca mais memória RAM, troca de processador ou coloca um SSD no lugar do seu HD. Porém, além de ser caro, melhoras no hardware tem o limite do próprio hardware. </p>
+<p>Aí entra o conceito de <strong>scale out</strong>, onde você usa múltiplos servidores para hospedar sua aplicação ao invés de melhorar um. Juntos, eles formam o que chamamos de <em>web farm </em>ou ambiente distribuído. Um <em>load balancer</em> é necessário para &#8220;espalhar&#8221; os requests entre os servidores da forma mais eficiente possível.</p>
+<p>Porém, um trabalho extra é necessário para sua aplicação poder ser hospedada numa web farm. Normalmente você configura 1 servidor, depois cria as aplicações no IIS de todos os outros com exatamente as mesmas configurações. </p>
+<p>Outro ponto de preocupação é a <em>session</em>, que são dados do usuário gravados na memória. Com web farm, requests subsequentes de um mesmo usuário podem cair em várias máquinas diferentes, o que pode impossibilitar o uso de session. Para resolver esse problema, você precisa mover os dados da sessão para uma máquina externa ou até um banco de dados. Há 4 tipos de <em>session states</em>:</p>
+<ul>
+<li><strong>InProc</strong>: valor padrão, onde os dados da session são gravados na memória;</li>
+<li><strong>StateServer</strong>: guarda os dados da session em um processo separado chamado <em>ASP.NET state service</em>;</li>
+<li><strong>SQLServer</strong>: guarda os dados da session num banco de dados SQL Server;</li>
+<li><strong>Off</strong>: desabilita a session</li>
+</ul>
+<p>Você também pode escolher ativar <em>session affinity</em>, onde todos os requests de um usuário vão cair no mesmo servidor, garantindo que os dados da session estarão na memória. Porém, nem todos os load balancers suportam isso.</p>
+<hr />
+<p>Chegamos ao final desse objetivo.</p>
+<p>Obrigado pela leitura e fique de olho no próximo post, que será sobre o objetivo <strong><a href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/">Choose a deployment strategy for a Windows Azure web application</a></strong>.</p>
+<p>Até mais!</p>
+<p>O post <a rel="nofollow" href="http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/">Certificação Microsoft 70-487: Objetivo 5.1 – Design a deployment strategy</a> apareceu primeiro em <a rel="nofollow" href="http://edneypitta.com">Edney Pitta</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://edneypitta.com/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

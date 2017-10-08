@@ -1,0 +1,420 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="O objetivo Choose a deployment strategy for a Windows Azure web application fala de conceitos de deploy voltados para o Azure."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application - Edney Pitta" />
+<meta property="og:description" content="O objetivo Choose a deployment strategy for a Windows Azure web application fala de conceitos de deploy voltados para o Azure." />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-03-03T12:05:14+00:00" />
+<meta property="article:modified_time" content="2016-03-05T12:08:44+00:00" />
+<meta property="og:updated_time" content="2016-03-05T12:08:44+00:00" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/16.png" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/17.png" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/18.png" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="O objetivo Choose a deployment strategy for a Windows Azure web application fala de conceitos de deploy voltados para o Azure."/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/16.png"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=555' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-555 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-555" class="post-555 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 5.2 – Choose a deployment strategy for a Windows Azure web application</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application/" rel="bookmark"><time class="entry-date published" datetime="2016-03-03T12:05:14+00:00">03/03/2016</time><time class="updated" datetime="2016-03-05T12:08:44+00:00">05/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá pessoal, tudo bem?<br />
+Vamos ao objetivo <strong>Choose a deployment strategy for a Windows Azure web application</strong>, que fala de conceitos de deploy voltados para o Azure.</p>
+<h2>Fazendo In-Place Upgrade E VIP Swap</h2>
+<p>Em casos de web farm, o Azure oferece 3 maneiras de atualizar sua aplicação: deletando e redeployando, In-Place Upgrade e VIP Swap.</p>
+<p>Deletar seu cloud service e redeployar é fácil, mas requer um downtime para seu serviço. Você deve usar essa opção em casos de mudança de número de endpoints, porta, firewall, certificados, etc. </p>
+<h4>In-Place Upgrade</h4>
+<p>Para entender o <strong>In-Place Upgrade</strong>, é necessário entender os conceitos de <em>Upgrade Domain</em> e <em>Fault Domain</em>. Upgrade Domain é uma unidade lógica da sua aplicação, enquanto Fault Domain é uma unidade física. </p>
+<p>Vamos supor que você precisa de 5 instâncias para sua aplicação. <strong>Automaticamente</strong> (isso não é controlável por você), o Azure vai distribuir cada instância entre o número de Upgrade Domains que você configurou no atributo <em>upgradeDomainCount</em> no arquivo Service Definition (valor padrão: 5, valor máximo: 20). Na hora do deploy da sua aplicação (In-Place Upgrade), o Azure atualiza um Upgrade Domain por vez, evitando downtime para o seu serviço.</p>
+<p>Fault Domain, também automaticamente atribuído pelo Azure, é quando as instâncias são separadas em servidores físicos diferentes. Somente com 2 Fault Domains o Azure garante o SLA de 99.95%.</p>
+<p>Para entender melhor esses conceitos, recomendo esse post: <a href="https://blog.tompawlak.org/windows-azure-fault-and-upgrade-domain" target="_blank">https://blog.tompawlak.org/windows-azure-fault-and-upgrade-domain</a>. Vamos em frente.</p>
+<p>Você tem 2 opções para disparar um deploy In-Place Upgrade. A primeira é diretamente pelo portal do Azure, fazendo o upload do pacote direto para seu Cloud Service. A outra é pelo Visual Studio, que necessita de um certificado emitido pelo portal para identificação:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/16.png" alt="new subscription" width="534" height="444" class="alignnone size-full wp-image-557" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/16.png 534w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/16-300x249.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></p>
+<p>Como dito antes, ao fazer um deploy, o Azure vai atualizar seus Upgrade Domains um por um. Então se você tiver mais do que 2 Upgrade Domains, no momento do deploy eles terão diferentes versões da sua aplicação. Isso pode ser um problema caso haja alterações no schema do banco de dados, por exemplo. Para resolver isso, existe uma técnica de deploy chamada VIP Swap.</p>
+<h4>VIP Swap</h4>
+<p>Um Cloud Service no Azure tem 2 ambientes: produção e staging. Ambos têm o mesmo hardware, diferenciando apenas o <em>virtual IP</em> (VIP) e a URL do serviço.</p>
+<p>O VIP Swap é quando o VIP e a URL dos ambientes de produção e staging são trocados. Isso significa que você pode fazer o deploy da nova versão da sua aplicação no ambiente de staging, testá-la, e promovê-la para produção instantaneamente com o VIP Swap. Depois, você pode deletar o ambiente de staging para evitar custos.</p>
+<p>Isso permite que você atualize todas as instâncias de uma só vez, evitando diferentes versões em produção ao mesmo tempo. Ainda vai haver requests que estão apontando para a versão antiga, mas o problema é bastante minimizado com essa técnica.</p>
+<p>Para realizar um VIP Swap, primeiro você precisa fazer o upload da nova versão da aplicação para o ambiente de staging, seja por deletando o serviço e redeployando ou via In-Place Upgrade. Depois de validado, basta ir no portal do Azure no ambiente de staging e clicar no botão Swap:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/17.png" alt="swap" width="848" height="545" class="alignnone size-full wp-image-558" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/17.png 848w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/17-300x193.png 300w" sizes="(max-width: 848px) 100vw, 848px" /></p>
+<h2>Criando E Configurando Input E Internal Endpoints</h2>
+<p>Há dois tipos de endpoints para suas instâncias de Cloud Services: <em>Input Endpoint</em> e <em>Internal Endpoint</em>. Um Input Endpoint é usado para conexões externas (internet) feitas via HTTP, HTTPS ou TCP. Internal Endpoints são usados para conexões internas entre as instâncias do Cloud Services via HTTP ou TCP.</p>
+<p>Seu Cloud Service pode ter 25 endpoints de cada tipo, que podem ser espalhados entre as roles. Quando você cria um projeto Cloud com uma web role e uma worker role, o arquivo <em>ServiceDefinition.csdef</em> fica assim:</p>
+<p><script src="https://gist.github.com/edneypitta/4645e4befaa14c50df81.js"></script></p>
+<p>A web role por padrão vem com um input endpoint na porta 80, padrão para conexões HTTP. A worker role não tem endpoints por padrão, mas você pode adicionar um input endpoint sem problemas:</p>
+<p><code>&lt;Endpoints&gt;<br />
+&lt;InputEndpoint name=&quot;WorkerRoleInput&quot; port=&quot;8080&quot; protocol=&quot;http&quot; localPort=&quot;8080&quot;/&gt;<br />
+&lt;/Endpoints&gt;</code></p>
+<p>Agora o load balancer encaminha os requests na porta 8080 para a worker role. Dentro dela, você pode usar um HttpListener para lidar com os requests:</p>
+<p><script src="https://gist.github.com/edneypitta/e8460b46cf4f0d16e7d0.js"></script></p>
+<p>Um ponto importante é que no Windows Azure emulator, as portas são remapeadas para a próxima porta disponível, para evitar conflitos. Isso significa que a porta 80 será remapeada para 81 e a 8080 para 8081.</p>
+<p>Você também pode editar as configurações de endpoint diretamente do Visual Studio, clicando duas vezes no nome da role no projeto Cloud Services:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/18.png" alt="cloud service" width="849" height="397" class="alignnone size-full wp-image-560" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/18.png 849w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/18-300x140.png 300w" sizes="(max-width: 849px) 100vw, 849px" /></p>
+<p>Ao selecionar o tipo do endpoint, há uma terceira opção chamada <em>InstanceInputEndpoint</em>. Nela você pode especificar um range de portas externas que são mapeadas para uma única porta. A configuração fica assim:</p>
+<p><code>&lt;InstanceInputEndpoint name=&quot;Endpoint2&quot; <strong>localPort</strong>=&quot;1000&quot; protocol=&quot;tcp&quot;&gt;<br />
+&lt;AllocatePublicPortFrom&gt;<br />
+&lt;FixedPortRange min=&quot;10016&quot; max=&quot;10020&quot;/&gt;<br />
+&lt;/AllocatePublicPortFrom&gt;<br />
+&lt;/InstanceInputEndpoint&gt;</code></p>
+<p>O elemento InstanceInputEndpoint especifica a porta local para onde os requests serão direcionados e o protocolo, enquanto o elemento AllocatePublicPortFrom especifica o range de portas públicas que serão ouvidas.</p>
+<h2>Especificando Configurações Do Sistema Operacional</h2>
+<p>Quando você cria um projeto Cloud Services, há dois arquivos de configuração: o <em>ServiceDefinition.csdef</em>, que especifica as configurações do Cloud Service como um todo, e o <em>ServiceConfiguration.cscfg</em> para configurações específicas das roles, como o número de instâncias, configurações de diagnostics, certificados, etc.</p>
+<p>Uma configuração importante para o exame é a especificação da versão do sistema operacional. Ao criar um novo projeto Cloud com uma web role e uma worker role, o arquivo .cscfg fica assim:</p>
+<p><script src="https://gist.github.com/edneypitta/5fcfc82186c1c810dd75.js"></script></p>
+<p>O atributo <em>osFamily</em> é o número da família do sistema operacional. A especificação completa das famílias e o suporte de cada uma delas pode ser vista <a href="https://azure.microsoft.com/pt-br/documentation/articles/cloud-services-guestos-update-matrix/" target="_blank">aqui</a>.</p>
+<p>O atributo <em>osVersion</em> especifica exatamente a versão do Guest OS em que sua role vai rodar. O valor * significa sempre a última versão. Para colocar uma versão específica, o seguinte formato deve ser utilizado: <code>WA-GUEST-OS-M.m_YYYYMM-nn</code>, onde <em>WA-GUEST-OS</em> é um valor fixo, <em>M.m</em> é o número da versão, <em>YYYY</em> o ano, <em>MM </em>o mês e <em>nn </em>um número sequencial para diferenciar os releases.</p>
+<hr />
+<p>Terminamos mais um objetivo 🙂</p>
+<p>Obrigado pela leitura e fique de olho no próximo post, que será sobre o objetivo 5.3: <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/">Configure a web application for deployment</a></strong>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="post pingback">
+        <p>Pingback: <a href='https://blog.lambda3.com.br/2016/03/certificacao-microsoft-70-487-developing-microsoft-azure-and-web-services/' rel='external nofollow' class='url'>Certificação Microsoft 70-487: Developing Microsoft Azure and Web Services | Blogs da Lambda3</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-1-design-a-deployment-strategy/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 5.1 – Design a deployment strategy</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/" rel="next">Certificação Microsoft 70-487: Objetivo 5.3 – Configure a web application for deployment <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"555 http:\/\/edneypitta.github.io\/?p=555","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 5.2 \u2013 Choose a deployment strategy for a Windows Azure web application","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-5-2-choose-a-deployment-strategy-for-a-windows-azure-web-application\/","options":{"manualSync":false},"postId":"555"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

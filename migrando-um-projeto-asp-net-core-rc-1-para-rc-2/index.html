@@ -1,0 +1,458 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Migrando um projeto ASP.NET Core RC 1 para RC 2 - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core.Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar algumas experiências dessa transição."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Migrando um projeto ASP.NET Core RC 1 para RC 2 - Edney Pitta" />
+<meta property="og:description" content="Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core.Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar algumas experiências dessa transição." />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="ASP.NET Core" />
+<meta property="article:section" content="ASP.NET Core" />
+<meta property="article:published_time" content="2016-06-04T16:57:24+00:00" />
+<meta property="article:modified_time" content="2016-06-04T18:10:41+00:00" />
+<meta property="og:updated_time" content="2016-06-04T18:10:41+00:00" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/06/asp-net-core-rc2.jpg" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core.Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar algumas experiências dessa transição."/>
+<meta name="twitter:title" content="Migrando um projeto ASP.NET Core RC 1 para RC 2 - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/06/asp-net-core-rc2.jpg"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=652' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-652 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-652" class="post-652 post type-post status-publish format-standard has-post-thumbnail hentry category-asp-net-core tag-asp-net-core">
+	<img width="750" height="410" src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/06/asp-net-core-rc2.jpg" class="single-featured wp-post-image" alt="" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/06/asp-net-core-rc2.jpg 750w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/06/asp-net-core-rc2-300x164.jpg 300w" sizes="(max-width: 750px) 100vw, 750px" />	<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Migrando um projeto ASP.NET Core RC 1 para RC 2</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/" rel="bookmark"><time class="entry-date published" datetime="2016-06-04T16:57:24+00:00">04/06/2016</time><time class="updated" datetime="2016-06-04T18:10:41+00:00">04/06/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/asp-net-core/" rel="category tag">ASP.NET Core</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá pessoal, tudo bem?</p>
+<p>Recentemente fiz a migração do projeto que estou trabalhando atualmente na Lambda3 do ASP.NET Core RC 1 para RC 2. Foram feitas muitas mudanças significativas no framework, principalmente no ferramental do .NET Core.<br />
+Nesse post vou indicar as principais mudanças que você vai precisar fazer para realizar a migração e contar algumas experiências dessa transição.<span id="more-652"></span></p>
+<h2>.NET CLI</h2>
+<p>A principal alteração foi a introdução do .NET CLI, como dito pelo Giovanni Bassi <a href="http://blog.lambda3.com.br/2016/02/adeus-dnx-bem-vindo-net-cli/" target="_blank">aqui</a>. Basicamente, ele substitui as três ferramentas que usávamos para buildar e executar nossa aplicação (DNX, DNVM e DNU).</p>
+<p>O primeiro passo para a migração é instalar o .NET CLI usando o .NET SDK, disponível <a href="https://www.microsoft.com/net/core#windows" target="_blank">aqui</a>. Instale também a última versão do NuGet Manager para o Visual Studio. Rode o comando <code>dotnet</code> na linha de comando para identificar se o .NET CLI foi instalado corretamente.</p>
+<p>Feito isso, partimos para as mudanças no projeto.</p>
+<h2>global.json</h2>
+<p>Troque a versão do SDK de <code>1.0.0-rc1-update1</code> para <code>1.0.0-preview1-002702</code>. É por esse arquivo que o Visual Studio determina qual ferramental será utilizado para restaurar pacotes, buildar, etc.</p>
+<p><script src="https://gist.github.com/edneypitta/5e12cee0a7482eaa30e06608462f6f34.js"></script></p>
+<h2>project.json</h2>
+<p>Esse arquivo foi o que sofreu mais alterações (<a href="https://blogs.msdn.microsoft.com/dotnet/2016/05/23/changes-to-project-json/" target="_blank">e vai morrer em breve</a>).</p>
+<p>Primeiro, troque os nomes dos <code>frameworks</code> para o novo estilo. No meu caso, a mudança foi de <code>dnx451</code> para <code>net452</code>. A lista completa dos frameworks disponíveis está <a href="http://docs.nuget.org/create/targetframeworks" target="_blank">aqui</a> (ignore os que começam com <code>dnx</code>).</p>
+<p><script src="https://gist.github.com/edneypitta/8cf6411090a6344f8da33a2454f256fe.js"></script></p>
+<p>O elemento <code>compilationOptions</code> agora se chama <code>buildOptions</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/e258dda8eed6449e5ab436e671ddf663.js"></script></p>
+<p>Troque o nome de todas as dependências que tenham <code>Microsoft.AspNet.*</code> para <code>Microsoft.AspNetCore.*</code>, assim como suas versões de <code>rc1</code> para <code>rc2</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/6c5c145b3e0fe9fafa5003bddd8ac6e4.js"></script></p>
+<p>Os elementos <code>exclude</code> e <code>publishExclude</code> foram substituídos pelo elemento <code>publishOptions</code>, onde você define os arquivos a serem incluídos na publicação ao invés do excluídos.</p>
+<p><script src="https://gist.github.com/edneypitta/7a4dfee84d8902a78c6c00ef7b4e4eb8.js"></script></p>
+<p>O elemento <code>runtimeOptions</code> foi criado para configuração do garbage collector.</p>
+<p><script src="https://gist.github.com/edneypitta/623360dbb940ea149a708499f626783c.js"></script></p>
+<p>Nos projetos de teste, caso seu framework for o xUnit, a dependência deve ser trocada de <code>xunit.runner.dnx</code> para <code>dotnet-test-xunit</code>. Também deve ser adicionado o elemento <code>"testRunner"</code> para indicar qual runner será usado para rodar os testes do projeto.</p>
+<p><script src="https://gist.github.com/edneypitta/46f1e63e610eb0f625daa7482ada78ac.js"></script></p>
+<p>Por último, a principal mudança: o elemento <code>commands</code> não existe mais. No .NET CLI, ele foi substituído pelo elemento <code>tools</code>, que funciona de forma diferente. </p>
+<p>Antes tínhamos dentro de <code>commands</code> vários &#8220;atalhos&#8221; para executar algumas dependências, como o servidor Kestrel, o Entity Framework, etc.</p>
+<p><script src="https://gist.github.com/edneypitta/94e881c29dad11c8ef60d9984c108f00.js"></script></p>
+<p>Agora, como tudo é simplesmente uma Console Application (até projetos web ASP.NET Core), você somente chama diretamente a sua aplicação ou alguma dependência que estiver em <code>tools</code>. Para subir sua aplicação ASP.NET Core, basta chamar <code>dotnet run</code>. Para rodar os testes, onde tínhamos um comando <code>"test": "xunit.runner.dnx"</code>, agora basta chamar <code>dotnet test</code>. </p>
+<p><script src="https://gist.github.com/edneypitta/bcd44d2c7ce2df92bec4cb247d1f9f91.js"></script></p>
+<p>Se você quiser desenvolver uma aplicação que seja invocável via <code>tools</code>, o executável precisa ter o nome no padrão <code>dotnet-{nome}</code>. Por exemplo, o nome do executável do DotNet Watcher é <code>dotnet-watch.exe</code> e você pode chamá-lo com o comando <code>dotnet watch</code>.</p>
+<p>Mais detalhes sobre as atualizações no <code>project.json</code> podem ser vistas <a href="https://github.com/aspnet/Announcements/issues/175" target="_blank">aqui</a>. Coloquei <a href="https://gist.github.com/edneypitta/b7155a04f3d9d9c4901c3d45a716e721" target="_blank">nesse gist</a> o <code>project.json</code> completo para referência.</p>
+<h2>launchSettings.json</h2>
+<p>Esse arquivo tem as configurações para o launch da sua aplicação. Normalmente, ele deveria ter um elemento <code>web</code>.</p>
+<p><script src="https://gist.github.com/edneypitta/87540f710ea85284eb2c862f1c20622d.js"></script></p>
+<p>Troque todo esse elemento por esse:</p>
+<p><script src="https://gist.github.com/edneypitta/386490bf8a8d220099e16c6069d9e1ad.js"></script></p>
+<p><code>WebApplication1</code> é o nome do seu projeto, o <code>commandName</code> com o valor <code>Project</code> indica que essa configuração será usada no <code>dotnet run</code> e a variável de ambiente <code>Hosting:Environment</code> foi trocada para <code>ASPNETCORE_ENVIRONMENT</code>.</p>
+<h2>appsettings.json</h2>
+<p>Nesse arquivo, apenas uma modificação: troque a configuração <code>Logging:LogLevel:Default</code> de <code>Verbose</code> por <code>Debug</code>:</p>
+<p><script src="https://gist.github.com/edneypitta/2f43f2aa457224770bf268a8661f66cd.js"></script></p>
+<h2>xproj</h2>
+<p>O arquivo <code>.xproj</code> tem algumas referências ao DNX que você precisa alterar manualmente. Dê unload no seu projeto e faça as seguintes alterações no arquivo <code>.xproj</code>:</p>
+<ul>
+<li>Substitua <code>\DNX\Microsoft.DNX.Props</code> por <code>\DotNet\Microsoft.DotNet.Props</code></li>
+<li>Em <code>\DNX\Microsoft.DNX.targets</code>, substitua <code>DNX</code> por <code>DotNet.Web</code> em projetos web ou por <code>DotNet</code> em projetos Class Library/Console Application</li>
+<li>Substitua todo o elemento <code>BaseIntermediateOutputPath</code> por <code>&lt;BaseIntermediateOutputPath Condition=&quot;&#39;$(BaseIntermediateOutputPath)&#39;==&#39;&#39; &quot;&gt;.\obj&lt;/BaseIntermediateOutputPath&gt;</code></li>
+<li>Substitua todo o elemento <code>OutputPath</code> por <code>&lt;OutputPath Condition=&quot;&#39;$(OutputPath)&#39;==&#39;&#39; &quot;&gt;.\bin\&lt;/OutputPath&gt;</code></li>
+<li>Adicione o seguinte elemento depois de <code>OutputPath</code>: <code>&lt;TargetFrameworkVersion&gt;v4.5.2&lt;/TargetFrameworkVersion&gt;</code></li>
+</ul>
+<p>Coloquei <a href="https://gist.github.com/edneypitta/79eff25475778edf38c848be4eb25b93" target="_blank">nesse gist</a> o <code>.xproj</code> completo de um projeto web para referência.</p>
+<h2>Método Main de projetos web</h2>
+<p>Antes, o entry point do nosso projeto web era algo parecido com isso na classe <code>Startup</code>:</p>
+<p><script src="https://gist.github.com/edneypitta/e0150be7a06e03ec9e55127abb225a3b.js"></script></p>
+<p>Agora temos um pouco mais de poder nesse momento. Troque todo o método <code>Main</code> pelo abaixo:</p>
+<p><script src="https://gist.github.com/edneypitta/1352a49518a102eb4c752a6a32b91626.js"></script></p>
+<p>O template do Visual Studio cria esse método numa classe separada chamada <code>Program</code>, mas isso não é necessário.</p>
+<h2>Startup.cs</h2>
+<p>Ao construir as configurações do seu projeto usando a classe <code>ConfigurationBuilder</code>, agora é necessário setar o <code>BasePath</code> para o runtime encontrar suas configurações:</p>
+<p><script src="https://gist.github.com/edneypitta/de1771f9482d56fb62395979883d8186.js"></script></p>
+<p>Se você usava o middleware <code>app.UseIISPlatformHandler()</code>, pode removê-lo. Agora ele está configurado no método <code>Main</code>.</p>
+<h2>web.config</h2>
+<p>O arquivo <code>web.config</code> deve ser criado para a configuração do handler <code>AspNetCoreModule</code>, um novo módulo do IIS para redirecionar os requests para o Kestrel:</p>
+<p><script src="https://gist.github.com/edneypitta/359cf4b3c875e076398b2d4c8e9172d0.js"></script></p>
+<h2>Trocas de namespaces</h2>
+<p>Basicamente, todos os namespaces que começavam com <code>Microsoft.AspNet.*</code> foram renomeados para <code>Microsoft.AspNetCore.*</code>. As principais trocas são:</p>
+<ul>
+<li><code>Microsoft.AspNet.Authorization</code> > <code>Microsoft.AspNetCore.Authorization</code></li>
+<li><code>Microsoft.AspNet.Mvc</code> > <code>Microsoft.AspNetCore.Mvc</code></li>
+<li><code>Microsoft.AspNet.Hosting</code> > <code>Microsoft.AspNetCore.Hosting</code></li>
+<li><code>Microsoft.AspNet.Http</code> > <code>Microsoft.AspNetCore.Http</code></li>
+<li><code>Microsoft.Extensions.OptionsModel</code> > <code>Microsoft.Extensions.Options</code></li>
+</ul>
+<h2>MVC</h2>
+<p>Os seguintes métodos da classe <code>Controller</code> foram renomeados:</p>
+<ul>
+<li><code>HttpUnauthorized</code> > <code>Unauthorized</code></li>
+<li><code>HttpNotFound</code> > <code>NotFound</code></li>
+<li><code>HttpBadRequest</code> > <code>BadRequest</code></li>
+</ul>
+<h2>Experiências</h2>
+<p>Realizar a conversão deve ser algo simples para a maioria dos projetos. Algumas APIs que não estão listadas acima foram modificadas, mas nada muito relevante.</p>
+<p>Não deixe de olhar o <a href="https://docs.asp.net/en/latest/migration/rc1-to-rc2.html" target="_blank">guia oficial de migração</a>. Veja também <a href="https://wildermuth.com/2016/05/17/Converting-an-ASP-NET-Core-RC1-Project-to-RC2" target="_blank">esse post</a> do Shawn Wildermuth, principalmente se você também precisa migrar o Entity Framework Core e o Identity.</p>
+<p>A unificação dos comandos <code>dnx</code>, <code>dnvm</code> e <code>dnu</code> em <code>dotnet</code> facilitou um pouco o dia-a-dia. Porém, algumas coisas mudaram para pior.</p>
+<p>O <code>dotnet watch</code> está praticamente inutilizável. Enquanto o DNX usava o Roslyn para fazer a compilação (gerando assemblies <em>in-memory</em>), o DotNet Watcher recompila os assemblies fisicamente, o que aumentou drasticamente o tempo de reload da aplicação.</p>
+<p>A substituição de <code>commands</code> por <code>tools</code> no <code>project.json</code> também mudou bastante a forma como trabalhamos com algumas dependências. No meu caso, por exemplo, tive bastante dificuldade para conseguir chamar o Fluent Migrator pois ele não tem ainda suporte ao .NET CLI (<a href="https://github.com/schambers/fluentmigrator/issues/712" target="_blank">estão trabalhando nisso, na verdade</a>).</p>
+<p>Por fim, caso tenha alguma dúvida, você pode tirá-la no <a href="https://aspnetcoreslack.herokuapp.com/" target="_blank">Slack do ASP.NET Core</a>. Tem bastante gente fazendo a migração e você pode acompanhar as novidades praticamente em tempo real, já que vários desenvolvedores do time do .NET Core estão lá.</p>
+<hr />
+<p>É isso pessoal. Obrigado pela leitura e vamos esperar pelo RTM, que deve sair <a href="https://github.com/aspnet/Home/wiki/Roadmap" target="_blank">no fim desse mês</a>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/asp-net-core/">ASP.NET Core</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="post pingback">
+        <p>Pingback: <a href='http://blog.lambda3.com.br/2016/06/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/' rel='external nofollow' class='url'>Migrando um projeto ASP.NET Core RC 1 para RC 2 | Blogs da Lambda3</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"652 http:\/\/edneypitta.github.io\/?p=652","disqusShortname":"edneypitta","disqusTitle":"Migrando um projeto ASP.NET Core RC 1 para RC 2","disqusUrl":"http:\/\/edneypitta.github.io\/migrando-um-projeto-asp-net-core-rc-1-para-rc-2\/","options":{"manualSync":false},"postId":"652"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

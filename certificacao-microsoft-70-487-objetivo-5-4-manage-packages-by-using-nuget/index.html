@@ -1,0 +1,422 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="O objetivo 5.4, Manage packages by using NuGet, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet - Edney Pitta" />
+<meta property="og:description" content="O objetivo 5.4, Manage packages by using NuGet, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes." />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-03-08T10:54:27+00:00" />
+<meta property="article:modified_time" content="2016-03-09T07:46:29+00:00" />
+<meta property="og:updated_time" content="2016-03-09T07:46:29+00:00" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/19.png" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/20.png" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/7.png" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="O objetivo 5.4, Manage packages by using NuGet, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes."/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/19.png"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=566' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-566 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-566" class="post-566 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 5.4 – Manage packages by using NuGet</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget/" rel="bookmark"><time class="entry-date published" datetime="2016-03-08T10:54:27+00:00">08/03/2016</time><time class="updated" datetime="2016-03-09T07:46:29+00:00">09/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá pessoal!<br />
+O objetivo 5.4, <strong>Manage packages by using NuGet</strong>, cobre todos os aspectos do NuGet: como instalar e atualizar um pacote, criar e configurar um pacote e preparar um repositório de pacotes. Vamos lá?</p>
+<h2>Instalando E Atualizando Um Pacote NuGet Existente</h2>
+<p>O NuGet permite que você instale bibliotecas para usar no seu código. Caso veja no exame alguma coisa sobre referenciar bibliotecas populares, pense em NuGet. Um pacote NuGet, além de ter uma série de assemblies que você pode referenciar, pode conter arquivos, como JavaScripts e CSSs. Também podem alterar seu arquivo de configuração ou adicionar código no seu projeto. A grande vantagem é que, ao invés de você ter que manualmente baixar assemblies ou arquivos, o NuGet faz isso automaticamente para você.</p>
+<p>A partir do Visual Studio 2012, os templates de projetos são baseados no NuGet. Se você criar uma aplicação ASP.NET MVC com o template de Internet, por exemplo, um arquivo chamado <em>packages.config</em> é criado contendo todas as referências ao pacotes utilizados. Esse arquivo é parecido com isso:</p>
+<p><script src="https://gist.github.com/edneypitta/b0337d6edfc55f24fb7c.js"></script></p>
+<h4>Janela Manage NuGet Packages</h4>
+<p>A janela Manage NuGet Packages serve para você gerenciar os pacotes instalados no seu projeto e instalar novos pacotes.</p>
+<p>Você pode acessá-la pelo Visual Studio no menu Tools > Library Package Manager > Manage NuGet Packages. Desse modo, os pacotes da solution inteira são abertos:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/19.png" alt="manage nuget packages" width="850" height="568" class="alignnone size-full wp-image-579" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/19.png 850w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/19-300x200.png 300w" sizes="(max-width: 850px) 100vw, 850px" /></p>
+<p>Indo na seção Online, você pode procurar os pacotes disponíveis e instalá-los diretamente do Visual Studio. Na parte Update, o Visual Studio detecta todas as atualizações disponíveis e você pode instalá-las com 1 clique.</p>
+<p>Você pode abrir os pacotes instalados apenas para 1 projeto, clicando com o botão direito em References > Manage NuGet Packages. A tela funciona exatamente igual.</p>
+<p>Outra grande vantagem do NuGet é que, ao instalar ou atualizar um pacote, ele detecta automaticamente todas as dependências e as instala juntamente com o pacote.</p>
+<h4>Package Manager Console</h4>
+<p>Para instalar, atualizar ou remover pacotes, você pode também usar o Package Manager Console, que é um Windows PowerShell integrado ao Visual Studio. Ele é assim:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/20.png" alt="package manager console" width="835" height="319" class="alignnone size-full wp-image-580" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/20.png 835w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/20-300x115.png 300w" sizes="(max-width: 835px) 100vw, 835px" /></p>
+<p>Para instalar um pacote, o comando <em>Install-Package</em> pode ser usado. Exemplo: <code>Install-Package Ninject</code>.</p>
+<p>Com isso, o assembly do Ninject é baixado para a pasta <em>packages</em> da solution e uma referência é adicionada ao projeto. </p>
+<p>Uma feature interessante do console é o auto complete, acionado quando você aperta a tecla Tab. Ele funciona para os nomes dos comandos e dos pacotes.</p>
+<p>Para desinstalar um pacote, o comando é o <em>Uninstall-Package</em>: <code>Uninstall-Package Ninject</code>.</p>
+<p>Esse comando remove o pacote do packages.config, remove a referência do projeto e deleta a pasta da packages. Todas as alterações aos arquivos de configuração também são revertidas. Porém, as dependências instaladas não são automaticamente removidas.</p>
+<p>Para atualizar um pacote, o comando é <em>Update-Package</em>: <code>Update-Package Ninject</code>.</p>
+<p>Caso você não especifique um pacote para o comando Update-Package, todos os pacotes da solution são atualizados. Para atualizar todos os pacotes de apenas um projeto, o parâmetro <em>-Project</em> pode ser usado: <code>Update-Package -Project NuGetTest</code>.</p>
+<p>Alguns pacotes oferecem comandos que são integrados ao console. Após instalar o pacote do Entity Framework, por exemplo, você pode usar os comandos <em>Enable-Migrations</em>, <em>Add-Migration</em> e <em>Update-Database</em> para usar Code First Migrations.</p>
+<p>O último detalhe é que os comandos são executados por padrão para o primeiro projeto da solution. Isso pode ser alterado no drop-down <em>Default project</em>.</p>
+<h4>Compartilhando Pacotes</h4>
+<p>Incluir os pacotes no controle de versão não é uma boa prática, pois todos eles serão guardados e baixados para cada pessoa que acessar o projeto. Se você esquecer de adicionar um pacote no controle de versão, também vai haver problemas para os outros usuários.</p>
+<p>Ao clicar com o botão direito na solution no Visual Studio, você pode habilitar a opção <em>Enable Package Restore On Build</em>. Ao fazer isso, uma pasta <em>.nuget</em> é adicionada na solution com um arquivo <em>NuGet.exe</em>. Dessa forma, no build do projeto o NuGet vai validar se todos os pacotes estão instalados e, se algum estiver faltando, vai fazer o download automaticamente. Isso permite que você não precise colocar os pacotes no controle de versão.</p>
+<p>Se você quer mudar a localização dos pacotes instalados, basta adicionar um arquivo <em>nuget.config</em> na solution com o seguinte conteúdo:</p>
+<p><script src="https://gist.github.com/edneypitta/601c40aa7b91a12e374d.js"></script></p>
+<h2>Criando E Configurando Um Pacote NuGet</h2>
+<p>Qualquer pessoa pode adicionar um pacote NuGet na galeria, tornando-o disponível a todos. Essa seção explica como criar e configurar um pacote para disponibilizá-lo na galeria.</p>
+<h4>Conteúdo Do Pacote</h4>
+<p>Um pacote NuGet é descrito pelo arquivo <em>.nuspec</em>, contendo um XML que descreve seu pacote. Ele é mais ou menos assim:</p>
+<p><script src="https://gist.github.com/edneypitta/f61b190e57772dadb1e3.js"></script></p>
+<p>Em seguida, você vai colocar seus arquivos. A convenção é distribuí-los em 3 pastas: <em>\lib</em>, <em>\content</em> e <em>\tools</em>.</p>
+<p>A pasta lib contém os assemblies. Se seu pacote for multiplataforma, você pode usar subpastas para separar essas versões.</p>
+<p>A pasta content tem arquivos de configuração, imagens, JavaScript, CSS, etc. Todos os arquivos nessa pasta serão incluídos no projeto. Isso significa que se você tiver uma imagem em <em>\content\images\myimg.png</em>, ela será adicionada no projeto em <em>\images\myimg.png</em>.<br />
+Arquivos de transformação também podem ser colocados nessa pasta. Se houver um arquivo <em>app.config.transformation</em> ou <em>web.config.transformation</em>, o NuGet vai colocar os elementos desses arquivos que não estiverem no arquivo de configuração do projeto.<br />
+Isso também é possível via código com arquivos <em>.cs.pp</em> quando você quer adicionar código no Global.asax ou alguma classe, por exemplo. Há alguns tokens que podem ser usados, como o <em>$rootnamespace$</em>, que insere o namespace correto: <code>namespace $rootnamespace$.Models</code>.</p>
+<p>Por fim, na pasta tools podem ser colocados scripts Windows PowerShell para rodar quando seu pacote é carregado, instalado e desinstalado, com os nomes <em>Init.ps1</em>, <em>Install.ps1</em> e <em>Uninstall.ps1</em>, respectivamente.</p>
+<p>Um último detalhe é que se seu pacote não tiver nada dentro das pastas content e lib ele é considerado um pacote a nível de solution. Você usa isso se seu objetivo for adicionar comandos ao Package Manager Console, como o pacote do Entity Framework.</p>
+<h4>Criando Seu Pacote NuGet</h4>
+<p>Você pode criar seu pacote NuGet via linha de comando ou usando a ferramenta <em>NuGet Package Explorer</em>.</p>
+<p>Para usar a linha de comando, você deve ter o arquivo <em>NuGet.exe</em> e adicionar a localização dele no PATH.</p>
+<p>O primeiro comando que você deve utilizar é o <code>NuGet Update -self</code>, que atualiza o NuGet para a última versão.</p>
+<p>Para criar um pacote NuGet a partir de um assembly, o comando é o <code>nuget spec MyAssembly.dll</code>. Com isso o arquivo <em>MyAssembly.nuspec</em> é criado contendo o manifesto para você editar o nome, descrição, dependências, etc.</p>
+<p>Depois disso, o comando <code>nuget pack MyAssembly.nuspec</code> cria de fato seu pacote no arquivo <em>MyAssembly.dll.1.0.0.nupkg</em>. Você pode testá-lo no Visual Studio abrindo o Package Manager Console e digitando o comando <code>Install-Package MyAssembly.dll -Source "C:\{location_of_your_package}"</code>. </p>
+<p>Você pode também criar um pacote NuGet a partir de um projeto do Visual Studio. Basta ir para a pasta do projeto (onde está o arquivo <em>.csproj</em>) e rodar o comando <code>nuget spec</code>. O arquivo <em>.nuspec</em> vai ser criado obtendo os tokens de id, versão, autor e descrição do arquivo <em>AssemblyInfo.cs</em> do projeto. Depois o comando <code>nuget pack MyProject.csproj</code> cria o pacote completo.</p>
+<p>Para criar um pacote complexo que contenha as pastas lib, content e tools, você precisa criar seu pacote manualmente com o comando <code>nuget spec</code>, editar o arquivo <em>.nuspec</em> como desejado, adicionar os arquivos nas pastas e criar o pacote com <code>nuget pack YourPackage.nuspec</code>.</p>
+<p>Com seu pacote pronto, você vai publicá-lo no NuGet. Com a API Key gerada no site do NuGet, você deve primeiro rodar o comando <code>NuGet SetApiKey Your-API-Key</code>. Depois, a publicação é feita com <code>NuGet Push YourPackage.nupkg</code>.</p>
+<p>A outra opção para criar e publicar um pacote é usando o programa <em>NuGet Package Explorer</em>. Essa ferramenta permite que você crie o manifesto com um editor gráfico, adicione arquivos nas pastas lib, content e tools e publique o pacote para o NuGet com 1 clique. Você pode também abrir pacotes, tanto locais quanto do feed, para explorar o conteúdo.</p>
+<h2>Preparando Um Repositório De Pacotes</h2>
+<p>Por padrão, o Visual Studio configura o repositório oficial do NuGet para obter pacotes. Você pode adicionar repositórios adicionais, tanto locais quanto remotos.</p>
+<p>Para criar um repositório local, você vai em Tools > Library Package Manager > Package Manager Settings. Na aba Package Source, a seguinte tela é mostrada:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/7.png" alt="options" width="803" height="470" class="alignnone size-full wp-image-583" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/7.png 803w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/03/7-300x176.png 300w" sizes="(max-width: 803px) 100vw, 803px" /></p>
+<p>Depois é só clicar o botão Add, colocar um nome e um caminho. Todos os arquivos <em>.nupkg</em> serão listados na aba Online da janela Manage NuGet Packages e no Package Manager Console, no drop-down Package-source.</p>
+<p>Você pode também criar um feed remoto que roda no IIS. Você deve criar uma web application vazia no Visual Studio e instalar o pacote <em>NuGet.Server</em>. Esse pacote adiciona todo o código necessário para a exposição dos seus pacotes como ATOM. Os pacotes dentro da pasta <em>Packages </em>serão disponibilizados (podendo ser configurado via web.config). </p>
+<p>É possível habilitar publicações para seu repositório remoto, como se fosse a galeria oficial do NuGet. Para isso basta adicionar a API Key no web.config.</p>
+<p>Depois, basta hospedar sua aplicação no IIS e acessar o feed na URL <em>http://{locationofyoursite}/nuget/</em>. Adicionando essa URL no Package Source, é possível instalar pacotes desse repositório normalmente.</p>
+<hr />
+<p>E isso é tudo 🙂</p>
+<p>Obrigado pela leitura e aguarde o próximo post, que será sobre o objetivo <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/">Create, configure, and publish a web package</a></strong>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-3-configure-a-web-application-for-deployment/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 5.3 – Configure a web application for deployment</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-5-create-configure-and-publish-a-web-package/" rel="next">Certificação Microsoft 70-487: Objetivo 5.5 – Create, configure, and publish a web package <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"566 http:\/\/edneypitta.github.io\/?p=566","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 5.4 \u2013 Manage packages by using NuGet","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-5-4-manage-packages-by-using-nuget\/","options":{"manualSync":false},"postId":"566"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

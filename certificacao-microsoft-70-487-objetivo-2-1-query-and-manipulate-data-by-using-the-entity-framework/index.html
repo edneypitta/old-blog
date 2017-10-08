@@ -1,0 +1,415 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 2.1 – Query and manipulate data by using the Entity Framework - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Olá pessoal! Esse será o post do primeiro objetivo do segundo grande tópico da certificação, Query and manipulate data by using the Entity Framework."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-1-query-and-manipulate-data-by-using-the-entity-framework/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 2.1 – Query and manipulate data by using the Entity Framework - Edney Pitta" />
+<meta property="og:description" content="Olá pessoal! Esse será o post do primeiro objetivo do segundo grande tópico da certificação, Query and manipulate data by using the Entity Framework." />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-1-query-and-manipulate-data-by-using-the-entity-framework/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-01-15T03:01:48+00:00" />
+<meta property="article:modified_time" content="2016-03-01T16:56:36+00:00" />
+<meta property="og:updated_time" content="2016-03-01T16:56:36+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="Olá pessoal! Esse será o post do primeiro objetivo do segundo grande tópico da certificação, Query and manipulate data by using the Entity Framework."/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 2.1 – Query and manipulate data by using the Entity Framework - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=321' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-321 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-321" class="post-321 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 2.1 – Query and manipulate data by using the Entity Framework</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-1-query-and-manipulate-data-by-using-the-entity-framework/" rel="bookmark"><time class="entry-date published" datetime="2016-01-15T03:01:48+00:00">15/01/2016</time><time class="updated" datetime="2016-03-01T16:56:36+00:00">01/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá pessoal! Esse será o post do primeiro objetivo do segundo grande tópico da certificação, o <strong>Querying and manipulating data by using the Entity Framework</strong>. Esse tópico foca especificamente em LINQ e Entity Framework e cobre aproximadamente 20% das questões do exame. Esse primeiro objetivo, <em>Query and manipulate data by using the Entity Framework</em> (que recebe quase o mesmo nome do tópico), cobre aspectos específicos do EF e os componentes que o compõe. Vamos lá?</p>
+<h2>Fazendo Queries, Updates e Deletes Usando DbContext</h2>
+<p>Fazer queries usando DbContext é bem direto e simples, usando LINQ:</p>
+<p><code>var query = (from acct in context.Accounts<br />
+ where acct.AccountAlias == "Primary"<br />
+ select acct).FirstOrDefault();</code></p>
+<p>Após uma entidade ser retornada de uma query, você pode interagir com o objeto como qualquer outro. Você faz quaisquer modificações necessárias e chama o método SaveChanges do context para fazer um update das informações alteradas.</p>
+<p>É possível também atualizar um item que você criou usando o método Add ou Attach e chamando o mesmo método SaveChanges para persistir as alterações. É importante entender bem a diferença entre os dois métodos: incluir uma entidade usando Add faz o item ter o EntityState como <em>Added</em>. Pelo objeto não ter valores originais no ObjectStateEntry, quando SaveChanges é chamado, o contexto vai tentar <strong>inserir</strong> a entidade no banco de dados. Attach, por outro lado, cria o item com o EntityState <em>Unchanged</em>. Então o momento que você faz o Attach é muito importante. Se você fizer depois de todas as alterações, <strong>nada vai acontecer</strong>, pois o EntityState vai continuar como Unchanged. Se você fizer o Attach e depois fazer as modificações na entidade, aí sim o context vai fazer o update das propriedades no banco na chamada do SaveChanges.</p>
+<p>Para deletar uma entidade do banco, você deve especificar o tipo da entidade usando o método Set e depois chamar o método Remove passando uma query. O item será deletado após a chamada ao SaveChanges.</p>
+<p><code>context.Set<Account>().Remove(query);</code></p>
+<h2>Deferred Execution e Lazy Loading</h2>
+<p>Esse assunto pode ser bem extenso, por isso vamos simplificar bastante aqui.</p>
+<p>Veja o seguinte código:</p>
+<p><code>var query = from acct in context.Accounts<br />
+ where acct.AccountAlias == "Primary"<br />
+ select acct;</code></p>
+<p>Suponha que no banco de dados há 20 registros com o nome da conta Primary. É lógico pensar que na próxima linha o count da query será 20, certo? <strong>Errado</strong>. Nesse ponto, nada aconteceu em termos de banco de dados. A essência de <em>Deferred Execution</em> (execução adiada) é que somente quando você pede o dado, explicitamente referenciando-o, que o acesso ao banco de dados é de fato feito. O código abaixo, por exemplo, potencialmente dispara muitas idas ao banco de dados:</p>
+<p><code>var query = from acct in Context.Accounts<br />
+ where acct.AccountAlias == "Primary"<br />
+ select acct;<br />
+foreach (var currentAccount in query)<br />
+{<br />
+ Console.WriteLine("Current Account Alias: {0}", currentAccount.AccountAlias);<br />
+}</code></p>
+<p>Já o código abaixo, por exemplo, ao invés de retornar uma coleção de itens, retorna somente um valor (count). Como é impossível obter esse valor sem ir ao banco de dados, ao chamar Count (ou qualquer função Aggregate como Average e Max), o acesso ao banco de dados é feito imediatamente:</p>
+<p><code>var query = (from acct in context.Accounts<br />
+ where acct.AccountAlias == "Primary"<br />
+ select acct).Count();</code></p>
+<p>Resumindo: no conceito de Deferred Execution, usado pelo EF, dados só são recuperados quando necessário.</p>
+<p>O Lazy Loading é um conceito parecido com o Deferred Execution, mas aplicado para relacionamentos no banco de dados. </p>
+<p>Imagine uma estrutura onde um Bank tem vários Customers, um Customer tem várias Accounts, uma Account tem várias Transactions e uma Transaction tem várias TransactionDetails. Ao obter um Customer para uma atualização simples de dados, você iria querer que todas as Accounts (com todas as Transactions e as TransactionsDetails) fossem retornadas? Provavelmente não.</p>
+<p>As opções de Loading são:</p>
+<ul>
+<li><strong>Lazy Loading</strong>: quando uma query é executada, somente os dados da entidade alvo são retornados. Por exemplo, se houver um relacionamento entre Account e Contact, uma query para Account retornaria inicialmente os dados da Account. Informações da Contact associada seriam retornadas quando uma NavigationProperty fosse acessada ou se você explicitamente pedisse;</li>
+<li><strong>Eager Loading</strong>: todos os dados relacionados são retornados. Nesse exemplo, ao fazer uma query para uma Account, os dados da Contact já seriam retornados. Essencialmente, é o oposto de Lazy Loading;</li>
+<li><strong>Explicit Loading</strong>: quando Lazy Loading está desabilitado, você pode usá-lo para carregar entidades de forma Lazy explicitamente. O método Load permite que você execute queries individualmente.</li>
+</ul>
+<p>Você pode achar que Lazy Loading sempre é a melhor opção, mas não se engane. Se você <strong>sabe </strong> quais dados vai usar, o Lazy Loading pode afetar a performance por fazer várias idas as banco de dados ao invés de uma. Se por outro lado você não tiver certeza do número de requisições ao banco de dados e provavelmente não vai utilizar todos os dados retornados, aí sim o Lazy Loading é a melhor opção.</p>
+<p>É possível habilitar ou desabilitar o Lazy Loading visualmente ou por código. Pelo Designer, basta ir ao EF Model, depois Properties, e escolher True ou False na propriedade Lazy Loading Enabled. Por código, o DbContext possui uma propriedade Configuration.LazyLoadingEnabled: <code>context.Configuration.LazyLoadingEnabled = true;</code>.</p>
+<p>Dê uma olhada no código abaixo:</p>
+<p><script src="https://gist.github.com/edneypitta/d7d52d6753dfed406347.js"></script></p>
+<p>Se você colocar um breakpoint na linha do primeiro foreach, vai perceber bem a diferença do Lazy Loading. Caso esteja desabilitado, toda a cascata de relacionamento será carregada na primeira ida ao banco de dados. Caso habilitado, você vai notar que as propriedades Customers, Transactions e TransactionDetails não serão carregadas. Elas irão sendo carregadas conforme forem usadas (foreach). Algumas outras operações também fazem com que os relacionamentos sejam carregados, como ToList, ToArray ou ToDictionary.<br />
+É importante notar também que se uma função Aggregate for chamada, uma query será executada imediatamente para retornar aquele valor. Então se você chamar o método Count de query.Customers e depois iterar pela lista (foreach), duas chamadas ao banco de dados serão feitas. Iterando primeiro (ou chamando o método ToList), você já saberia o tamanho da lista e não seriam necessárias duas chamadas.</p>
+<h2>Criando Compiled Queries</h2>
+<p>Usando LINQ, o EF cuida de traduzir a query para a linguagem SQL em tempo de execução, o que leva algum tempo. Por isso, o EF suporta <em>compiled queries</em>, onde ele cacheia o SQL de uma determinada query e somente muda os parâmetros na hora de executá-la. A partir do .NET 4.5, isso é feito automaticamente, mas você pode ainda fazer esse processo manualmente:</p>
+<p><code>static readonly Func<MyObjectContext, string, Person> compiledQuery =<br />
+            CompiledQuery.Compile<MyObjectContext, string, Person>(<br />
+                (ctx, email) => (from p in ctx.People<br />
+                                 where p.EmailAddress == email<br />
+                                 select p).FirstOrDefault());</code></p>
+<p>E usar a query assim: <code>Person p = compiledQuery.Invoke(context, "foo@bar");</code>. É importante o método ser estático para evitar a compilação a cada chamada. Outro ponto é que se a query for modificada, o EF vai precisar recompilá-la. Então o ganho de performance será perdido se você adicionar um Count ou ToList numa query compilada.</p>
+<h2>Usando Entity SQL</h2>
+<p>O EF permite que você execute queries SQL diretamente no DbContext, com todo o conhecimento do seu model. Outro benefício é o maior controle sobre a query SQL que será executada no banco de dados. Você pode fazer uso do Entity Framework Object Services assim:</p>
+<p><code>var queryString = "SELECT VALUE p " +<br />
+ "FROM MyEntities.People AS p " +<br />
+ "WHERE p.FirstName='John'";<br />
+ObjectQuery<Person> people = context.CreateQuery<Person>(queryString);</code></p>
+<p>Outro cenário é quando você não precisa do objeto inteiro ou quer trabalhar somente com os valores retornados para ganho de performance. Isso é efetuado através da classe EntityDataReader, bem parecida com a classe DataReader do System.Data. Segue um código de exemplo:</p>
+<p><script src="https://gist.github.com/edneypitta/6a77be2cfb173d51c053.js"></script></p>
+<p>Isso é tudo para esse objetivo. Obrigado pela leitura e fique de olho no próximo post, que será sobre o objetivo 2.2 da certificação Microsoft 70-487: <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-2-query-and-manipulate-data-by-using-data-provider-for-entity-framework/">Query and manipulate data by using Data Provider for Entity Framework</a></strong>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-6-manipulate-xml-data-structures/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 1.6 – Manipulate XML data structures</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-2-query-and-manipulate-data-by-using-data-provider-for-entity-framework/" rel="next">Certificação Microsoft 70-487: Objetivo 2.2 – Query and manipulate data by using Data Provider for Entity Framework <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"321 http:\/\/edneypitta.github.io\/?p=321","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 2.1 \u2013 Query and manipulate data by using the Entity Framework","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-2-1-query-and-manipulate-data-by-using-the-entity-framework\/","options":{"manualSync":false},"postId":"321"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

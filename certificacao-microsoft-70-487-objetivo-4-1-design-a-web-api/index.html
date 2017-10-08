@@ -1,0 +1,484 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 4.1 – Design a Web API - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="O primeiro objetivo do capítulo sobre Web API, Design a Web API, cobre como escolher um método HTTP apropriado, definir recursos HTTP com actions, usar rotas, escolher formatos e planejar quando usar actions assíncronas. Vamos lá?"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-4-1-design-a-web-api/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 4.1 – Design a Web API - Edney Pitta" />
+<meta property="og:description" content="O primeiro objetivo do capítulo sobre Web API, Design a Web API, cobre como escolher um método HTTP apropriado, definir recursos HTTP com actions, usar rotas, escolher formatos e planejar quando usar actions assíncronas. Vamos lá?" />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-4-1-design-a-web-api/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-02-26T10:16:29+00:00" />
+<meta property="article:modified_time" content="2016-03-01T16:58:30+00:00" />
+<meta property="og:updated_time" content="2016-03-01T16:58:30+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="O primeiro objetivo do capítulo sobre Web API, Design a Web API, cobre como escolher um método HTTP apropriado, definir recursos HTTP com actions, usar rotas, escolher formatos e planejar quando usar actions assíncronas. Vamos lá?"/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 4.1 – Design a Web API - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=482' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-482 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-482" class="post-482 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 4.1 – Design a Web API</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-4-1-design-a-web-api/" rel="bookmark"><time class="entry-date published" datetime="2016-02-26T10:16:29+00:00">26/02/2016</time><time class="updated" datetime="2016-03-01T16:58:30+00:00">01/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá pessoal!</p>
+<p>Hoje vamos começar o primeiro objetivo do capítulo sobre Web API, <strong>Design a Web API</strong>. Esse objetivo cobre como escolher um método HTTP apropriado, definir recursos HTTP com actions, usar rotas, escolher formatos e planejar quando usar actions assíncronas. Vamos lá?</p>
+<h2>Escolhendo Métodos HTTP</h2>
+<p>Resumindo a introdução, Web API é um serviço REST (Representational State Transfer) baseado em HTTP. Ao invés de chamar um método específico, como no WCF, com Web API você faz uma chamada para uma URL em conjunto com um método HTTP.</p>
+<p>Segue uma lista com os métodos HTTP existentes e depois entraremos em detalhes sobre os mais importantes:</p>
+<ul>
+<li><strong>Delete</strong>: deleta a entidade;</li>
+<li><strong>Get</strong>: obtém os dados de uma ou mais entidades;</li>
+<li><strong>Put</strong>: atualiza a entidade inteira;</li>
+<li><strong>Patch</strong>: atualiza parcialmente a entidade;</li>
+<li><strong>Post</strong>: cria uma nova entidade;</li>
+<li><strong>Head</strong>: recupera somente os headers;</li>
+<li><strong>Options</strong>: requisita informações sobre as opções disponíveis de comunicação.</li>
+</ul>
+<h4>HttpGet</h4>
+<p>Geralmente o método mais usado, o HttpGet serve para obter dados de uma ou mais entidades. Ou seja, para cada entidade em um modelo, geralmente haverá um Get para obter todos os itens e outro Get para obter os detalhes de um item específico:</p>
+<p><code>"/api/Foos" // obtém lista de todos os Foos<br />
+"/api/Foos/keyvalue" // obtém um Foo com a key especificada<br />
+"/api/Foos?attributename=attributevalue" // obtém um ou mais Foos com os atributos especificados</code></p>
+<p>Caso nenhum valor seja encontrado, é importante lançar uma HttpResponseException com HttpStatusCode.NotFound (404) ao invés de simplesmente lançar uma Exception.</p>
+<h4>HttpDelete</h4>
+<p>Talvez o mais simples de todos, o HttpDelete simplesmente deleta uma entidade com o valor especificado, geralmente a chave. É aconselhável usar o prefixo <em>Delete</em> no nome do método do controller Web API.</p>
+<p>Idealmente, há 3 possíveis retornos para um request Delete: </p>
+<ul>
+<li>HttpStatusCode.OK (200), que indica sucesso;</li>
+<li>HttpStatusCode.Accepted (202), que indica que o request foi processado e aceito mas está ainda pendente;</</li>
+<li>HttpStatusCode.NoResponse (204), valor padrão para métodos com retorno void</li>
+</ul>
+<h4>HttpPost</h4>
+<p>Para criar uma nova entidade, o método HttpPost deve ser usado. Assim como em Delete, o prefixo <em>Post</em> deve ser utilizado.</p>
+<p>Em caso de sucesso, o retorno estipulado pelo protocolo HTTP 1.1 é HttpStatusCode.Created (201), mas o status code padrão é 200 (OK). É também aconselhável retornar a localização (URL) de detalhes da nova entidade criada. Seguindo esses padrões, a implementação de um HttpPost para criar uma Account seria assim:</p>
+<p><code>[HttpPost]<br />
+public HttpResponseMessage PostAccount(Account account)<br />
+{<br />
+HttpResponseMessage response = Request.CreateResponse<Account>(HttpStatusCode.Created, account);<br />
+string newUri = Url.Link("NamedApi", new { accountId = account.AccountId });<br />
+response.Headers.Location = new Uri(newUri);<br />
+return response;<br />
+}</code></p>
+<h4>HttpPut</h4>
+<p>HttpPut deve ser utilizado para operações <em>upserts</em>, que inserem novos registros ou atualizam registros existentes. Também devem utilizar o prefixo <em>Put</em>.</p>
+<p>Para atualizar uma Account, por exemplo, você deve receber um Id para procurar e uma Account para atualizar os valores. A implementação seria assim:</p>
+<p><code>[HttpPut]<br />
+public HttpResponseMessage PutAccount(int id, Account account)<br />
+{<br />
+// perform insert and/or edit here.<br />
+}</code></p>
+<h2>Definindo Recursos HTTP Com Actions</h2>
+<p>Um serviço Web API nada mais é do que uma aplicação que usa controllers e actions para mapear URLs com ações HTTP. Esta seção foca no básico de como construir uma aplicação Web API.</p>
+<h4>Criando O Model</h4>
+<p>Voltando um pouco ao capítulo anterior, em WCF era necessário decorar suas classes com os atributos DataContract e DataMember para trafegá-las pelos serviços.</p>
+<p>Com Web API, isso não é mais necessário. O próprio framework toma conta de enviar sua classe via HTTP, serializada em JSON ou XML. Isso evita o acoplamento entre seu modelo e o serviço que o expõe, além de facilitar os possíveis clients desse serviço pelo fato de JSON e XML serem praticamente universais.</p>
+<p>Para os exemplos a seguir, vamos considerar o seguinte model:</p>
+<p><script src="https://gist.github.com/edneypitta/167b3d7653d04b2112fb.js"></script></p>
+<h4>Criando O Controller</h4>
+<p>Os controllers são as classes que definem os serviços da sua Web API. Eles herdam de <em>ApiController</em> e cada método público vira uma <em>action</em>, como se fosse um método no WCF.</p>
+<p>Veja a implementação dos controllers abaixo. Seguindo o padrão REST, é criado um serviço para cada tipo no modelo:</p>
+<p><script src="https://gist.github.com/edneypitta/51124e2030818e670284.js"></script></p>
+<p><script src="https://gist.github.com/edneypitta/4f8d4763dd6d01e8f0b4.js"></script></p>
+<p>Com isso, você já tem sua Web API funcionando. Basta acessar <code>http://localhost:{porta}/api/Account</code> e a lista de Accounts é retornada. Chamando <code>/api/Account?accountId=1</code>, a Account com o Id 1 é retornada. </p>
+<p>Um ponto importante é que, chamando essas URLs diretamente no browser, o comportamento é definido pelo próprio browser. O Chrome e o Firefox, por exemplo, mostrariam um XML na tela, enquanto o Internet Explorer faria o download de um JSON. Isso varia do request header <strong>Accept </strong>que o browser envia para a Web API.</p>
+<h2>Definindo Rotas</h2>
+<p>Toda a mágica da Web API de tornar métodos públicos em um controller acessíveis por clients acontece por causa da <em>Routing Table</em>. </p>
+<p>Routing Table é um classe que implementa <em>System.Web.Http.Routing.IHttpRoute</em> e tem a tarefa de mepear um request para um controller e uma action específicos. No caso de Web API, a classe se chama WebApiConfig e fica dentro de App_Start:</p>
+<p><script src="https://gist.github.com/edneypitta/bc41c4fabf2f6f1035d7.js"></script></p>
+<p>Se você mudar o routeTemplate para <code>"data/{controller}/{id}"</code>, por exemplo, você agora acessa sua api com <code>http://localhost:{porta}/data/Account</code>.</p>
+<p>Quando uma requisição é feita para uma Web API, o framework tenta achar o controller e a action segundo o que está definido na Routing Table. Se não encontra, uma HttpStatusCode 404 é retornado. Caso contrário, o request é encaminhado para o método. As seguintes ações são tomadas pelo framework para encontrar o controller e a action:</p>
+<ul>
+<li>Para achar o controller, a Web API adiciona a palavra <em>Controller</em> na variável do controller (por isso você chama diretamente Account, por exemplo);</li>
+<li>Para a action, a Web API examina o método HTTP do request e tenta achar uma action com o nome correspondente;</li>
+<li>Por padrão, isso só funciona com os métodos GET, POST, PUT e DELETE. Outro métodos são suportados, mas outro mecanismo é utilizado;</li>
+<li>Por último, as variáveis no routeTemplate são mapeadas para os parâmetros da action (por padrão, <em>id</em>).</li>
+</ul>
+<p>Você pode setar explicitamente um método HTTP em uma action. Isso é importante quando você quer que o nome do método seja diferente do método HTTP. Para fazer isso, basta decorar o método com o atributo <em>System.Web.Http.ActionMethodSelectorAttribute</em>. Ele possui 4 valores: HttpGet, HttpPost, HttpDelete e HttpPut. O método ficaria assim: </p>
+<p><code>[HttpGet]<br />
+public Account GetAccount(int accountId)</code></p>
+<p>Para definir múltiplos métodos HTTP para uma action ou suportar um método HTTP fora os 4 citados, você usa o atributo <em>System.Web.Http.AcceptVerbsAttribute</em>. O construtor aceita um array de strings que correspondem aos métodos que devem ser mapeados. O uso ficaria assim:</p>
+<p><code>[System.Web.Http.AcceptVerbs("GET", "HEAD")]<br />
+public IEnumerable<Customer> GetCustomers(int accountId)</code></p>
+<h4>Alterando Actions</h4>
+<p>Se você quiser criar as rotas com o nome da ation explícito, basta mudar a Routing Table para isso. O código ficaria assim:</p>
+<p><script src="https://gist.github.com/edneypitta/71116a14432f469431a7.js"></script></p>
+<p>Com isso, ao invés de acessar <code>/api/Customer/1</code>, você acessa <code>/api/Customer/GetCustomers/1</code>. </p>
+<p>Você pode alterar o nome da action pelo atributo <em>ActionNameAttribute</em>:</p>
+<p><code>[HttpGet]<br />
+[ActionName("FindCustomers")]<br />
+public IEnumerable<Customer> SearchCustomers(string lastName)</code></p>
+<p>Assim, você acessa essa action com a URL <code>/api/Customer/FindCustomers?lastName=r</code>.</p>
+<p>O último ponto é que você pode querer que um método público no controller não seja uma action acessível pelo serviço. Para isso, decore o método com o atributo <em>NonAction</em>.</p>
+<h2>Escolhendo Formatos</h2>
+<p>O request header Accept indica o formato que o client espera como retorno. Acessando sua Web API pelo browser, geralmente o seguinte header é enviado: </p>
+<p><code>Accept: text/html,application/xhtml+xml,application/xml</code></p>
+<p>Por padrão, a Web API trabalha com JSON e XML. Isso é configurado por um objeto chamado <em>media-type formatter</em>.</p>
+<p>Para essa seção, basta você saber isso e que você pode adicionar formatters customizados implementando a classe <em>MediaTypeFormatter </em>ou <em>BufferedMediaTypeFormatter</em>.</p>
+<h2>Actions Assíncronas</h2>
+<p>Ao fazer um request para um serviço Web API, uma thread é alocada do servidor para fazer o processamento necessário.<br />
+Em cenários de grandes processamentos de I/O (entrada/saída), como acesso a banco de dados e chamadas a outros serviços, é importante liberar a thread atual para que ela processe mais requests enquanto essa entrada/saída longa é executada.</p>
+<p>O C# 5 nos deu mecanismos para fazer isso de forma muito simples: as palavras-chave <em>async </em>e <em>await</em>. Tome por exemplo a seguinte action de uma Web API:</p>
+<p><code>public string Get()<br />
+{<br />
+WebClient webClient = new WebClient();<br />
+string result = webClient.DownloadString("http://microsoft.com");<br />
+return result;<br />
+}</code></p>
+<p>Na maior parte do tempo, a thread alocada fica esperando o processamento I/O de fazer o request para o site da microsoft e buscar o HTML. Olhe essa action com async/await:</p>
+<p><code>public <strong>async </strong>Task&lt;string&gt; Get()<br />
+{<br />
+WebClient webClient = new WebClient();<br />
+string result = await webClient.DownloadString<strong>TaskAsync</strong>("http://microsoft.com");<br />
+return result;<br />
+}</code></p>
+<p>Na chamada a <code>await webClient.DownloadStringTaskAsync</code>, a thread alocada é liberada para processar outros requests enquanto a requisição ao site da Microsoft é feita.</p>
+<p>Um último alerta é que chamadas assíncronas devem ser feitas <strong>apenas</strong> para processamentos I/O. Se o método assíncrono fizer um processamento de CPU, outra thread terá que ser alocada para fazer esse processamento, o que invalida quaisquer benefícios da programação assíncrona (podendo até piorar devido à troca de threads).</p>
+<hr />
+<p>Chegamos ao fim desse objetivo 🙂</p>
+<p>Obrigado pela leitura e espere pelo próximo post sobre o objetivo 4.2, <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-4-2-implement-a-web-api/">Implement a Web API</a></strong>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="post pingback">
+        <p>Pingback: <a href='https://blog.lambda3.com.br/2016/03/certificacao-microsoft-70-487-developing-microsoft-azure-and-web-services/' rel='external nofollow' class='url'>Certificação Microsoft 70-487: Developing Microsoft Azure and Web Services | Blogs da Lambda3</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-3-9-host-and-manage-services/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 3.9 – Host and manage services</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-4-2-implement-a-web-api/" rel="next">Certificação Microsoft 70-487: Objetivo 4.2 – Implement a Web API <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"482 http:\/\/edneypitta.github.io\/?p=482","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 4.1 \u2013 Design a Web API","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-4-1-design-a-web-api\/","options":{"manualSync":false},"postId":"482"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

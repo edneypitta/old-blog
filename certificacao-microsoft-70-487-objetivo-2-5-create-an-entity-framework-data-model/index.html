@@ -1,0 +1,455 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 2.5 – Create an Entity Framework data model - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Olá! Create an Entity Framework data model, o objetivo 2.5, é o último do segundo tópico da certificação, Querying and manipulating data by using the Entity Framework"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-5-create-an-entity-framework-data-model/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 2.5 – Create an Entity Framework data model - Edney Pitta" />
+<meta property="og:description" content="Olá! Create an Entity Framework data model, o objetivo 2.5, é o último do segundo tópico da certificação, Querying and manipulating data by using the Entity Framework" />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-5-create-an-entity-framework-data-model/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-01-27T23:22:43+00:00" />
+<meta property="article:modified_time" content="2016-03-01T16:57:07+00:00" />
+<meta property="og:updated_time" content="2016-03-01T16:57:07+00:00" />
+<meta property="og:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/01/edmx.png" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="Olá! Create an Entity Framework data model, o objetivo 2.5, é o último do segundo tópico da certificação, Querying and manipulating data by using the Entity Framework"/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 2.5 – Create an Entity Framework data model - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:image" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/01/edmx.png"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=363' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-363 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-363" class="post-363 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 2.5 – Create an Entity Framework data model</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-5-create-an-entity-framework-data-model/" rel="bookmark"><time class="entry-date published" datetime="2016-01-27T23:22:43+00:00">27/01/2016</time><time class="updated" datetime="2016-03-01T16:57:07+00:00">01/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>Olá!</p>
+<p>O objetivo 2.5 da certificação, Create an Entity Framework data model, é o último objetivo do segundo tópico da certificação, <strong>Querying and manipulating data by using the Entity Framework</strong>. Finalmente vamos ver como construir um Entity Model, além de recordar alguns conceitos e componentes do EF cobertos no objetivo 1.1.</p>
+<p>Esse objetivo cobre como: 1) estruturar o model usando as heranças Table-per-Type e Table-per-Hierarchy, 2) escolher e implementar um método de data model (Model First ou Database First), 3) implementar objetos POCO e 4) descrever um data model usando Conceptual Schema Definitions, Storage Schema Definition, e Mapping Language (CSDL, SSDL, MSL). Vamos lá?</p>
+<h2>Estruturando o Data Model Usando as Heranças Table-per-Type e Table-per-Hierarchy</h2>
+<p>Você pode tratar os casos de herança de duas formas: Table-per-Type (tabela por tipo) e Table-per-Hierarchy (tabela por hierarquia). </p>
+<p>Basicamente, a diferença entre as duas é que, em tabela por tipo, cada classe herdeira vira uma tabela no banco de dados. Em tabela por hierarquia, tanto a classe pai quanto as filhas ficarão guardadas na mesma tabela, geralmente com uma coluna indicando qual é o tipo.</p>
+<p>Para o exame, você deve saber quais são as vantagens e desvantagens das duas formas:</p>
+<h4>Tabela Por Tipo</h4>
+<p>Vantagens:</p>
+<ul>
+<li>Os dados não são guardados redundantemente;</li>
+<li>Os dados são armazenados na terceira norma formal, aumentando a integridade;</li>
+<li>A implementação é mais simples. Para adicionar ou remover uma entidade herdeira, basta deletar a tabela no banco de dados e atualizar o Entity Model.</li>
+</ul>
+<p>Desvantagens:</p>
+<ul>
+<li>A performance é afetada em operações básicas (CRUD);</li>
+<li>Complica a administração do banco de dados pelas tabelas adicionais.</li>
+</ul>
+<h4>Tabela Por Hierarquia</h4>
+<p>Vantagens:</p>
+<ul>
+<li>Deixa o schema do banco simplificado por conter menos tabelas;</li>
+<li>Operações de CRUD otimizadas por trabalhar em uma só tabela.</li>
+</ul>
+<p>Desvantagens:</p>
+<ul>
+<li>Há redundância dos dados por não seguir a terceira normal formal;</li>
+<li>Pode haver problemas com a integridade dos dados devido a redundância;</li>
+<li>O Entity Model fica mais complexo pela tabela conter mais campos.</li>
+</ul>
+<h2>Escolher e Implementar um Método de Data Model (Model First ou Database First)</h2>
+<p>Escolher um modelo de EDM é um conceito importante, mas não há muito o que aprender aqui.</p>
+<p><strong>Model First</strong> acontece quando você cria um modelo vazio e vai criando os recursos necessários, como as entidades, os relacionamentos entre elas e o comportamento das propriedades. Depois disso tudo, você gera o schema do banco de dados do EDM; e o Entity Framework cuida da criação do banco de dados e o mapeamento entre o banco e o modelo.</p>
+<p><strong>Database First</strong>, como esperado, assume que você já tem o schema do banco de dados pronto e escolhe criar o EDM a partir dele. Nesse caso, o Entity Framework cuida da criação dos itens do EDM e o mapeamento entre eles.</p>
+<p>Outro ponto importante nesse assunto são as propriedades que você pode setar diretamente no EDM, escolhendo qualquer um dos dois métodos. Clicando com o botão direito no designer e indo em Properties, você pode controlar algumas propriedades que têm o nome bem sugestivo, como se o Lazy Loading deve ser utilizado, o nome do namespace desejado, o nível de acesso dos containers, etc. </p>
+<p>Indo nas propriedades de cada entidade ou em alguma propriedade, há alguns comportamentos e configurações que podem ser alterados:</p>
+<ul>
+<li>A classe base da entidade;</li>
+<li>Se a propriedade é Nullable;</li>
+<li>Visibilidade dos getters e setters;</li>
+<li>Um valor default para uma propriedade;</li>
+<li>Essa é bem interessante: a propriedade <strong>Concurrency Mode</strong>, quando setada para <em>Fixed</em>, assegura que o valor no banco de dados não foi alterado quando você vai atualizá-lo. Por exemplo, se você obteve uma entidade do banco com uma propriedade no valor &#8220;x&#8221; e vai alterá-la para &#8220;y&#8221;, o Entity Framework vai validar se o valor ainda é &#8220;x&#8221; antes de você atualizá-lo para &#8220;y&#8221;. Isso pode ser bem útil em alguns cenários, mas carrega uma piora na performance pela validação. Outro ponto é que, embora esse comportamento seja definido no nível de propriedade, se você tiver 50 campos setados para Fixed, apenas uma query será feita no banco para comparar os 50 valores.</li>
+</ul>
+<h2>Implementar Objetos POCO</h2>
+<p>Ao criar uma entidade no EDM, o Entity Framework vai gerar a classe .NET automaticamente. Caso desejado, você pode desabilitar esse comportamento nas Properties do designer e criar você mesmo um POCO (<em>plain old common object</em>), tendo mais controle sobre suas classes.</p>
+<p>Para usar suas classes POCO no contexto do EF, alguns passos são necessários. A primeira coisa é que as classes devem ser decoradas com o atributo Table, especificando o nome da tabela no banco de dados:</p>
+<p><code>[Table("Account")]<br />
+public class Account{}<br />
+[Table("Customers")]<br />
+public class Customers{}<br />
+[Table("TransactionDetails")]<br />
+public class TransactionDetail{}<br />
+Table("Transactions")]<br />
+public class Transaction{}</code></p>
+<p>O modo de vincular as classes no contexto depende se você estiver utilizando DbContext ou ObjectContext.</p>
+<p>Com DbContext, basta definir as classes usando a classe genérica DbSet e passando o tipo de cada POCO:</p>
+<p><code>public partial class EntityFrameworkSamplesEntitiesDb : DbContext<br />
+{<br />
+ public EntityFrameworkSamplesEntitiesDb(): base("name=EntityFrameworkSamplesEntities1")<br />
+{}<br />
+public DbSet<Account> Accounts { get; set; }<br />
+public DbSet<Customer> Customers { get; set; }<br />
+public DbSet<TransactionDetail> TransactionDetails { get; set; }<br />
+public DbSet<Transaction> Transactions { get; set; }<br />
+}</code></p>
+<p>Com ObjectContext não é muito diferente. A classe genérica ObjectSet deve ser usada e as propriedades devem ser inicializadas no construtor:</p>
+<p><code>public partial class EntityFrameworkSamplesEntitiesSample : ObjectContext<br />
+{<br />
+ public EntityFrameworkSamplesEntitiesSample(): base("name=EntityFrameworkSamplesEntities1")<br />
+{<br />
+ Accounts = new ObjectSet<Account>();<br />
+ Customers = new ObjectSet<Customer>();<br />
+ TransactionDetails = new ObjectSet<TransactionDetail>();<br />
+ Transactions = new ObjectSet<Transaction>();<br />
+}<br />
+ public ObjectSet<Account> Accounts { get; set; }<br />
+ public ObjectSet<Customer> Customers { get; set; }<br />
+ public ObjectSet<TransactionDetail> TransactionDetails { get; set; }<br />
+ public ObjectSet<Transaction> Transactions { get; set; }<br />
+}</code></p>
+<h2>Descrever um Data Model Usando Conceptual Schema Definitions, Storage Schema Definition, e Mapping Language (CSDL, SSDL, MSL)</h2>
+<p>O Entity Framework junta cada um desses componentes no arquivo .edmx, mas para o exame é importante entender qual o papel de cada um. Basicamente, o CSDL é o conceito do schema do banco traduzido para objetos; o SSDL representa o próprio schema do banco de dados e o MSL é o responsável por juntar os dois e mapear o schema do banco com os objetos.</p>
+<p>Não há muito o que ir mais fundo sobre o CSDL e o SSDL, a não ser que são XMLs representando informações &#8211; objetos e modelos relacionais de banco de dados. O MSL, que unifica os dois, é um pouco mais complexo e merece um entendimento maior.</p>
+<p>O MSL, junto com o .edmx, contém vários outros arquivos gerados automaticamente. São eles:</p>
+<ul>
+<li>Um arquivo .edmx que serve como container para tudo;</li>
+<li>Um arquivo <em>ModelName.Context.tt</em> para geração de templates das classes .NET especificadas no model do respectivo contexto;</li>
+<li>O arquivo <em>ModelName.Context.cs</em> que contém as classes do contexto;</li>
+<li>O arquivo <em>ModelName.Designer.cs</em> que provê suporte para o designer do EDM;</li>
+<li> Um arquivo <em>ModelName.edmx.Diagram</em> que contém um XML parecido com o seguinte:<br />
+<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br /> &lt;edmx:Edmx Version=&quot;2.0&quot; xmlns:edmx=&quot;http://schemas.microsoft.com/ado/2008/10/edmx&quot;&gt;<br /> &lt;!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) --&gt;<br /> &lt;edmx:Designer xmlns=&quot;http://schemas.microsoft.com/ado/2008/10/edmx&quot;&gt;<br /> &lt;!-- Diagram content (shape and connector positions) --&gt;<br /> &lt;edmx:Diagrams&gt;<br />&lt;Diagram DiagramId=&quot;8576b1de6991436caba647ac89886831&quot; Name=&quot;Diagram1&quot;&gt;<br />&lt;EntityTypeShape EntityType=&quot;EntityFrameworkSamplesModel1.Account&quot; Width=&quot;1.5&quot; PointX=&quot;7.5&quot; PointY=&quot;0.875&quot; IsExpanded=&quot;true&quot; /&gt;<br />&lt;EntityTypeShape EntityType=&quot;EntityFrameworkSamplesModel1.Customer&quot; Width=&quot;1.5&quot; PointX=&quot;9.75&quot; PointY=&quot;0.875&quot; IsExpanded=&quot;true&quot; /&gt;<br />&lt;EntityTypeShape EntityType=&quot;EntityFrameworkSamplesModel1.TransactionDetail&quot; Width=&quot;1.5&quot; PointX=&quot;14.25&quot; PointY=&quot;0.875&quot; IsExpanded=&quot;true&quot; /&gt;<br />&lt;EntityTypeShape EntityType=&quot;EntityFrameworkSamplesModel1.Transaction&quot; Width=&quot;1.5&quot; PointX=&quot;12&quot; PointY=&quot;0.875&quot; IsExpanded=&quot;true&quot; /&gt;<br />&lt;AssociationConnector Association=&quot;EntityFrameworkSamplesModel1.FK_Account_Account&quot; ManuallyRouted=&quot;false&quot; /&gt;<br />&lt;AssociationConnector Association=&quot;EntityFrameworkSamplesModel1.FK_Customer_Account&quot; ManuallyRouted=&quot;false&quot; /&gt;<br />&lt;AssociationConnector Association=&quot;EntityFrameworkSamplesModel1.FK_Transactions_Customer&quot; ManuallyRouted=&quot;false&quot; /&gt;<br />&lt;AssociationConnector Association=&quot;EntityFrameworkSamplesModel1.FK_TransactionDetails_Transactions&quot; ManuallyRouted=&quot;false&quot; /&gt;<br />&lt;/Diagram&gt;<br />&lt;/edmx:Diagrams&gt;<br />&lt;/edmx:Designer&gt;<br />&lt;/edmx:Edmx&gt;</code>
+</li>
+<li>Por último, o arquivo <em>ModelName.tt</em> que tem as informações de template para geração das classes de dados.</li>
+</ul>
+<p>Uma olhada no arquivo .edmx pode ajudar na visualização de todos esses artefatos:</p>
+<p><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/01/edmx.png" alt="edmx" width="426" height="878" class="aligncenter size-full wp-image-367" srcset="https://edneypitta.github.io/old-blog/wp-content/uploads/2016/01/edmx.png 426w, https://edneypitta.github.io/old-blog/wp-content/uploads/2016/01/edmx-146x300.png 146w" sizes="(max-width: 426px) 100vw, 426px" /></p>
+<p>Isso é tudo para esse objetivo. O próximo post cobrirá o primeiro objetivo do capítulo 3 da certificação, <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-3-1-create-a-wcf-service/">Designing and implementing WCF Services</a></strong>.</p>
+<p>Nos vemos lá!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-2-4-query-and-manipulate-data-by-using-ado-net/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 2.4 – Query and manipulate data by using ADO.NET</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-3-1-create-a-wcf-service/" rel="next">Certificação Microsoft 70-487: Objetivo 3.1 – Create a WCF service <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"363 http:\/\/edneypitta.github.io\/?p=363","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 2.5 \u2013 Create an Entity Framework data model","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-2-5-create-an-entity-framework-data-model\/","options":{"manualSync":false},"postId":"363"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!doctype html>
+	<!--[if !IE]>
+	<html class="no-js non-ie" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html class="no-js" lang="pt-BR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<base href="https://edneypitta.github.io/old-blog" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Certificação Microsoft 70-487: Objetivo 1.5 – Create and implement a WCF Data Services service - Edney Pitta</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="A discussão sobre WCF Data Services no objetivo 1.1 foi curta porque há um objetivo específico para ele, o Create and implement a WCF Data Services service"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-5-create-and-implement-wcf-data-services-service/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificação Microsoft 70-487: Objetivo 1.5 – Create and implement a WCF Data Services service - Edney Pitta" />
+<meta property="og:description" content="A discussão sobre WCF Data Services no objetivo 1.1 foi curta porque há um objetivo específico para ele, o Create and implement a WCF Data Services service" />
+<meta property="og:url" content="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-5-create-and-implement-wcf-data-services-service/" />
+<meta property="og:site_name" content="Edney Pitta" />
+<meta property="article:publisher" content="https://www.facebook.com/edneypitta" />
+<meta property="article:tag" content="70-487" />
+<meta property="article:section" content="Certificação" />
+<meta property="article:published_time" content="2016-01-13T01:05:30+00:00" />
+<meta property="article:modified_time" content="2016-03-01T16:56:26+00:00" />
+<meta property="og:updated_time" content="2016-03-01T16:56:26+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="A discussão sobre WCF Data Services no objetivo 1.1 foi curta porque há um objetivo específico para ele, o Create and implement a WCF Data Services service"/>
+<meta name="twitter:title" content="Certificação Microsoft 70-487: Objetivo 1.5 – Create and implement a WCF Data Services service - Edney Pitta"/>
+<meta name="twitter:site" content="@edneypitta"/>
+<meta name="twitter:creator" content="@edneypitta"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edneypitta.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/style.css?ver=4.8.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.8.2'></script>
+<link rel='https://api.w.org/' href='https://edneypitta.github.io/old-blog/wp-json/' />
+
+ 
+
+<link rel='shortlink' href='https://edneypitta.github.io/old-blog/?p=285' />
+
+
+<script data-cfasync="false" src="//load.sumome.com/" data-sumo-site-id="025f16b2b72012bef5c86b74ea4d0bd0652e8245a2df8c61ed302458c0f98f3b" async></script><style type="text/css">.entry-content {font-family: Open Sans; font-size:14px; font-weight: normal; color:#6B6B6B;}.navbar > .container .navbar-brand {
+font-size: 35px;
+margin-top: 7px;
+}
+
+#menu-social i{
+font-size:17px;
+}
+#menu-social-1 i {
+font-size:22px;
+}
+
+article ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+margin-bottom: 10px;
+}
+
+article li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+article li:before {
+    content: "\2022";
+    color: rgb(191, 66, 78); 
+padding-right:7px;
+font-size: 15px;
+}
+
+#logo {
+margin: 10px 0px;
+}
+
+.textwidget a:hover h2{
+color:#c9302c;
+}</style>	<style type="text/css">
+			.navbar > .container .navbar-brand {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-180x180.png" />
+<meta name="msapplication-TileImage" content="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-cropped-edneypitta-oficialissimo-fundo-branco-270x270.png" />
+
+<script type="text/javascript">
+jQuery(document).ready(function()
+{
+jQuery('.fa-linkedin-square').parent().attr('target', '_blank').attr('title', 'LinkedIn');
+jQuery('.fa-facebook-square').parent().attr('target', '_blank').attr('title', 'Facebook');
+jQuery('.fa-twitter-square').parent().attr('target', '_blank').attr('title', 'Twitter');
+jQuery('.fa-rss').parent().attr('target', '_blank').attr('title', 'RSS');
+
+jQuery('.fa-info-circle').parent().attr('title', 'Sobre');
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66613004-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-285 single-format-standard">
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							<div id="logo">
+								<a href="https://edneypitta.github.io/old-blog/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/cropped-edneypitta-oficialissimo-fundo-branco.png"  height="84" width="411" alt="Edney Pitta"/></a>
+							</div><!-- end of #logo -->
+
+							
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-social" class="nav navbar-nav"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a title="&lt;i class=&quot;fa fa-linkedin-square&quot;&gt;&lt;/i&gt;" href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a title="&lt;i class=&quot;fa fa-facebook-square&quot;&gt;&lt;/i&gt;" href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a title="&lt;i class=&quot;fa fa-twitter-square&quot;&gt;&lt;/i&gt;" href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a title="&lt;i class=&quot;fa fa-rss&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a title="&lt;i class=&quot;fa fa-info-circle&quot;&gt;&lt;/i&gt;" href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+			<div class="row">
+				<div class="main-content-inner col-sm-12 col-md-8 pull-left">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-285" class="post-285 post type-post status-publish format-standard hentry category-certificacao tag-70-487">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Certificação Microsoft 70-487: Objetivo 1.5 – Create and implement a WCF Data Services service</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-5-create-and-implement-wcf-data-services-service/" rel="bookmark"><time class="entry-date published" datetime="2016-01-13T01:05:30+00:00">13/01/2016</time><time class="updated" datetime="2016-03-01T16:56:26+00:00">01/03/2016</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://edneypitta.github.io/old-blog/author/admin/">Edney Pitta</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://edneypitta.github.io/old-blog/category/certificacao/" rel="category tag">Certificação</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>A discussão sobre WCF Data Services no <a href="https://edneypitta.github.io/old-blog/certificao-microsoft-70-487-objetivo-1-1-choose-data-access-technologies-parte-3-wcf-data-services/" target="_blank">objetivo 1.1</a> foi curta porque há um objetivo específico para ele, o Create and implement a WCF Data Services service, que será coberto nesse post. </p>
+<p>Esse objetivo cobre como endereçar recursos, criar uma query, acessar formatos de carga (incluindo JSON) e trabalhar com interceptores e operadores de serviço. Vamos lá?</p>
+<h2>Endereçando Recursos</h2>
+<p>Para criar um WCF Data Service, basicamente você deve seguir os seguintes passos:</p>
+<ul>
+<li>Criar uma aplicação ASP.NET (para hostear o Data Service);</li>
+<li>Usar o EF para criar seu EntityModel;</li>
+<li>Adicionar um WCF Data Service;</li>
+<li>Especificar um tipo para o serviço (que é o nome do model container do projeto do EF);</li>
+<li>Habilitar acesso ao Data Service configurando explicitamente algumas propriedades do <em>DataServiceConfiguration</em> (SetEntitySetAccessRule, SetServiceOperationAccessRule e DataServiceBehavior)</li>
+</ul>
+<p>Quando você adicionar um WCF Data Service, você verá classes geradas assim: <code>public class ExamSampleService : DataService<Nome do Model></code>. Essas classes herdam de <em> System.Data. Services.DataService</em>, que recebem um tipo genérico. O código gerado terá também o método <em>InitializeService</em> com alguns comentários que ajudam na sua configuração:</p>
+<p><code>// This method is called only once to initialize service-wide policies.<br />
+public static void InitializeService(DataServiceConfiguration config) {<br />
+// TODO: set rules to indicate which entity sets and service operations are visible, updatable, etc.<br />
+// Examples:<br />
+// config.SetEntitySetAccessRule("MyEntityset", EntitySetRights.AllRead);<br />
+// config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);  config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V2;<br />
+}</code></p>
+<p>Como já citado, é importante se familiarizar com os métodos <em>SetEntitySetAccessRule </em>e <em>SetServiceOperationAccessRule </em>e a propriedade <em>DataServiceBehavior.MaxProtocolVersion</em>.</p>
+<h4>SetEntitySetAccessRule</h4>
+<p>Esse método recebe dois parâmetros: uma string com o nome do EntitySet e um enum EntitySetRights. Como o enum é decorado com Flags, você pode passar mais de um valor dessa forma: <code>config.SetEntitySetAccessRule("Courses", EntitySetRights.AllRead | EntitySetRights.WriteMerge);</code>. Os possíveis valores desse enum são:</p>
+<ul>
+<li><strong>None</strong>: todos os acessos são revogados;</li>
+<li><strong>ReadSingle</strong>: um item pode ser lido;</li>
+<li><strong>ReadMultiple</strong>: sets de dados podem ser lidos;</li>
+<li><strong>WriteAppend</strong>: novos itens podem ser adicionados;</li>
+<li><strong>WriteReplace</strong>: dados podem ser atualizados;</li>
+<li><strong>WriteDelete</strong>: dados podem ser deletados;</li>
+<li><strong>WriteMerge</strong>: dados podem ser mergeados;</li>
+<li><strong>AllRead</strong>: tudo pode ser lido;</li>
+<li><strong>AllWrite</strong>: tudo pode ser escrito;</li>
+<li><strong>All</strong>: todas as operações são permitidas.</li>
+</ul>
+<h4>SetServiceOperationAccessRule</h4>
+<p>Esse método dá permissões para uma ServiceOperation e funciona da mesma forma que o método SetEntitySetAccessRule, mas o enum é um ServiceOperationRights. Os valores desse enum são:</p>
+<ul>
+<li><strong>None</strong>: todos os acessos são revogados;</li>
+<li><strong>ReadSingle</strong>: um item pode ser lido;</li>
+<li><strong>ReadMultiple</strong>: sets de dados podem ser lidos;</li>
+<li><strong>AllRead</strong>: um e vários itens podem ser lidos;</li>
+<li><strong>All</strong>: todos os direitos são garantidos;</li>
+<li><strong>OverrideEntitySetRights</strong>: indica se sobrescreve os valores configurados em SetEntitySetAccessRule.</li>
+</ul>
+<h4>DataServiceBehavior.MaxProtocolVersion</h4>
+<p>Essa propriedade indica qual versão do protocolo OData será usado no serviço. Os possíveis valores do enum DataServiceProtocolVersion são V1 e V2.</p>
+<h2>Criando Uma Query</h2>
+<p>Uma das principais vantagens do WCF Data Services é que seus recursos são endereçáveis por URIs via OData, e você pode fazer queries nas URIs de uma forma bem simples.</p>
+<p>Suponha que você criou um WCF Data Service com o nome ExamPrepService baseado num Entity Model que tem tópicos, questões e respostas como entidades.</p>
+<p>Para obter todos os registros de uma entidade, a query <em>Service/EntitySetName</em> pode ser usada. Para obter todos os tópicos do serviço, por exemplo, a seguinte query pode ser usada:<br />
+<code>http://servicehost/ExamPrepService.svc/Topics</code></p>
+<p>A query <em>Service/EntitySetName(&#8216;KeyValue&#8217;)</em> retorna a entidade que tem uma key com o valor passado. Por exemplo, para obter o tópico que tem o nome First, a query fica <code>http://servicehost/ExamPrepService.svc/Topics('First')</code>.</p>
+<p>Se você precisa somente da propriedade Description, a query fica <code>http://servicehost/ExamPrepService.svc/Topics('First')/Description</code>. Se quiser somente o valor primitivo e não o XML, basta adicionar /$value no final: <code>http://servicehost/ExamPrepService.svc/Topics('First')/Description/$value</code>.</p>
+<p>As queries funcionam bem com relacionamentos, se esses estiverem definidos no Entity Model. Para obter todas as Answers da Question com a key 1, por exemplo, a seguinte query deve ser usada:<br />
+<code>http://servicehost/ExamPrepService.svc/Questions('1')/Answers</code></p>
+<p>O caminho inverso também é possível: <code>http://servicehost/ExamPrepService.svc/Answers('1:4')/Question</code>.</p>
+<p>Até agora, só filtramos os resultados pela key da entidade. Mas o protocolo OData e o WCF Data Service oferecem várias opções de query que se traduzem em queries SQL. É bem importante entender o efeito de todos eles no resultado.</p>
+<ul>
+<li><strong>$orderby</strong>: define uma ordem para o resultado. Uma ou mais propriedades podem ser usadas, separadas por vírgula: <code>/Questions?$orderby=Id,Description</code>;</li>
+<li><strong>$top</strong>: define quantos resultados serão retornados: <code>/Questions?$top=5</code></li>
+<li><strong>$skip</strong>: indica quantos registros devem ser ignorados. Suponha que há 30 tópicos, mas você quer ignorar os 10 primeiros e os 10 últimos. A query fica assim: <code>/Questions?$skip=10&$top=10</code>;</li>
+<li><strong>$filter</strong>: especifica uma ou mais condições: <code>/Questions?$filter=Id gt 5</code>;</li>
+<li><strong>$expand</strong>: indica quais entidades relacionadas serão retornadas: <code>/Questions?$expand=Answers</code>;</li>
+<li><strong>$select</strong>: por padrão, todas as propriedades de uma entidade são retornadas. Usando $select, você pode especificar quais propriedades serão retornadas separando por vírgula: <code>/Questions&$select=Id,Text,Description,Author</code>;</li>
+<li><strong>$inlinecount</strong>: retorna o número de registros retornados no elemento &lt;count&gt;: <code>/Questions?$inlinecount=allpages</code>.</li>
+</ul>
+<p>Você também pode executar queries por meio de código usando a classe <em>DataServiceQuery</em>:</p>
+<p><code>String ServiceUri = "http://servicehost/ExamPrepService.svc";<br />
+ExamServiceContext ExamContext = new ExamServiceContext(new Uri(ServiceUri); DataServiceQuery<Questions> = ExamContext.Question<br />
+.AddQueryOptions("$filter", "id gt 5")<br />
+.AddQueryOptions("$expand", "Answers");</code></p>
+<h4>Acessando Formatos De Carga</h4>
+<p>o WCF Data Service dá suporte aos formatos Atom e JSON de forma fácil. </p>
+<p>Basta usar a opção $format na query com o valor atom ou json. Caso esteja consultando via WebClient ou queira especificar isso em um request header, funciona da mesma maneira. Para JSON, coloque o header Content-Type para <em>application/json</em>. Para Atom, <em>application/atom+xml</em>.</p>
+<h4>Trabalhando Com Interceptor e Service Operator</h4>
+<p>O WCF Data Service permite que você intercepte um request para prover uma lógica customizada. </p>
+<p>Há dois tipos de Interceptors: <em>ChangeInterceptor</em>, que serve para interceptar operações NON-Query, e <em>QueryInterceptor</em>, que intercepta operações de Query.</p>
+<p>ChangeInterceptors têm retorno nulo e aceitam dois parâmetros: o tipo da entidade e um UpdateOperations, que referencia o request. A definição de um método ChangeInterceptor fica assim:</p>
+<p><code>[ChangeInterceptor("Topics")]<br />
+public void OnChangeTopics(Topic topic, UpdateOperations operations)<br />
+</code></p>
+<p>QueryInterceptors são decorados com QueryInterceptor e retornam uma Expression<Func<T, Boolean>>, que servem como filtro para a entidade. A assinatura fica assim:</p>
+<p><code>[QueryInterceptor("Topics")]<br />
+public Expression<Func<Topic, bool>> FilterTopics(){}</code></p>
+<p>A dica para o exame é que, para identificar se um método é ChangeInterceptor ou QueryInterceptor, basta olhar para o tipo do retorno.<br />
+Para saber qual Interceptor deve ser implementado para fazer alguma coisa, é necessário saber o comportamento e determinar se é uma operação NON-Query ou Query. Por exemplo, <em>DeleteTopics </em>seria um ChangeInterceptor; já um método <em>GetAdvancedTopics </em>seria um QueryInterceptor.</p>
+<p>Qualquer dúvida, fique à vontade para fazê-la nos comentários.<br />
+Fique ligado para o post do próximo objetivo, <strong><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-6-manipulate-xml-data-structures/">Manipulate XML data structures</a></strong>.</p>
+<p>Até mais!</p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://edneypitta.github.io/old-blog/tag/70-487/">70-487</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+			
+<div id="disqus_thread">
+    </div>
+
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Navegação de Post</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-4-implement-data-storage-in-windows-azure/" rel="prev"><i class="fa fa-chevron-left"></i> Certificação Microsoft 70-487: Objetivo 1.4 &#8211; Implement data storage in Windows Azure</a></div><div class="nav-next"><a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-1-6-manipulate-xml-data-structures/" rel="next">Certificação Microsoft 70-487: Objetivo 1.6 – Manipulate XML data structures <i class="fa fa-chevron-right"></i></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+	jQuery('.esconderTextoPagina').remove();
+	
+  });
+</script>
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="https://edneypitta.github.io/old-blog/sobre/"><img src="https://edneypitta.github.io/old-blog/wp-content/uploads/2015/08/IMG-20150829-WA00012-e1440915174271-150x150.jpg"  width="150" height="150" class="aligncenter size-thumbnail wp-image-93" style="border-radius: 80px;" />
+<h2 style="text-align:center;">Edney Pitta</h2></a>
+<div style="text-align: center;">Desenvolvedor de Software @ Lambda3</div>
+<div style="margin-top:20px;text-align:center;"><a href="https://edneypitta.github.io/old-blog/sobre/"><button class="btn btn-danger btn-lg " >SOBRE MIM</button></a></div></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://edneypitta.github.io/old-blog/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Procurar&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Posts recentes</h3>		<ul>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/migrando-um-projeto-asp-net-core-rc-1-para-rc-2/">Migrando um projeto ASP.NET Core RC 1 para RC 2</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-486-developing-asp-net-mvc-web-applications/">Certificação Microsoft 70-486: Developing ASP.NET MVC Web Applications</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-480-programming-in-html5-with-javascript-and-css3/">Certificação Microsoft 70-480: Programming in HTML5 with JavaScript and CSS3</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-resultado/">Certificação Microsoft 70-487 &#8211; Resultado</a>
+						</li>
+					<li>
+				<a href="https://edneypitta.github.io/old-blog/certificacao-microsoft-70-487-objetivo-5-6-share-assemblies-between-multiple-applications-and-servers/">Certificação Microsoft 70-487: Objetivo 5.6 – Share assemblies between multiple applications and servers</a>
+						</li>
+				</ul>
+		</aside>		<aside id="annual_archive_widget-2" class="widget Annual_Archive_Widget"><h3 class="widget-title">Arquivo</h3>	<ul>
+		<li><a href='https://edneypitta.github.io/old-blog/2016/06/'>junho 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/05/'>maio 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/04/'>abril 2016</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/03/'>março 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/02/'>fevereiro 2016</a>&nbsp;(11)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2016/01/'>janeiro 2016</a>&nbsp;(10)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/12/'>dezembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/11/'>novembro 2015</a>&nbsp;(3)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/10/'>outubro 2015</a>&nbsp;(1)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/09/'>setembro 2015</a>&nbsp;(5)</li>
+	<li><a href='https://edneypitta.github.io/old-blog/2015/08/'>agosto 2015</a>&nbsp;(2)</li>
+	</ul>
+	</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+				</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+						<ul id="menu-social-1" class="nav footer-nav clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://br.linkedin.com/in/edneypitta"><i class="fa fa-linkedin-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://www.facebook.com/edneypitta"><i class="fa fa-facebook-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://twitter.com/edneypitta"><i class="fa fa-twitter-square"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://edneypitta.github.io/old-blog/feed/"><i class="fa fa-rss"></i></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="https://edneypitta.github.io/old-blog/sobre/"><i class="fa fa-info-circle"></i></a></li>
+</ul>					</nav>
+					<div class="copyright col-md-6">
+						<a rel="license" href="http://creativecommons.org/licenses/by/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/2.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/comment-reply.min.js?ver=4.8.2'></script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-includes/js/wp-embed.min.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.8.2","language":""},"disqusIdentifier":"285 http:\/\/edneypitta.github.io\/?p=285","disqusShortname":"edneypitta","disqusTitle":"Certifica\u00e7\u00e3o Microsoft 70-487: Objetivo 1.5 \u2013 Create and implement a WCF Data Services service","disqusUrl":"http:\/\/edneypitta.github.io\/certificacao-microsoft-70-487-objetivo-1-5-create-and-implement-wcf-data-services-service\/","options":{"manualSync":false},"postId":"285"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.8.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"edneypitta"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://edneypitta.github.io/old-blog/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.8.2'></script>
+
+</body>
+</html>
